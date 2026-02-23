@@ -63,6 +63,7 @@ export const Hero: React.FC<HeroProps> = ({ onStart, isDark, hasPrevious, onOpen
   const sonicDesc = isFa
     ? 'برای وقتی که اینترنت قطع یا ضعیف است. PIMXSONIC کمک می‌کند موسیقی را بدون محدودیت تجربه کنید.'
     : 'For times when the internet is down or weak. PIMXSONIC lets you enjoy music without limits.';
+  const sonicCta = isFa ? 'ورود به بات PIMXSONIC' : 'Open PIMXSONIC Bot';
 
   return (
     <div className="relative min-h-screen flex flex-col items-center pt-32 pb-20 px-4 overflow-hidden">
@@ -316,6 +317,20 @@ export const Hero: React.FC<HeroProps> = ({ onStart, isDark, hasPrevious, onOpen
               <p className={`leading-8 mb-8 text-lg font-light ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                 {sonicDesc}
               </p>
+
+              <a
+                href="https://t.me/PIMX_SONIC_BOT"
+                target="_blank"
+                rel="noreferrer"
+                className={`inline-flex px-8 py-4 rounded-2xl font-bold transition-all items-center justify-center gap-3 group ${
+                  isDark
+                    ? 'bg-rose-600 hover:bg-rose-500 text-white shadow-lg hover:shadow-rose-600/30'
+                    : 'bg-rose-500 hover:bg-rose-600 text-white shadow-lg hover:shadow-rose-500/30'
+                }`}
+              >
+                <Bot className="w-5 h-5" />
+                {sonicCta}
+              </a>
             </div>
           </div>
         </motion.div>
