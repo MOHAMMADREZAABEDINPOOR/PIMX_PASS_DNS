@@ -4,7 +4,7 @@ import { Globe } from 'lucide-react';
 import { useI18n } from '../i18n';
 
 export const Footer: React.FC = () => {
-  const { lang } = useI18n();
+  const { lang, t } = useI18n();
   const isFa = lang === 'fa';
 
   return (
@@ -16,9 +16,11 @@ export const Footer: React.FC = () => {
               PIMX<span className="text-primary">PASS</span>
             </h2>
             <p className="text-slate-500 text-sm mt-2 font-medium">
-              {isFa ? 'پلتفرم دسترسی آزاد و ضد سرکوب اینترنتی' : 'Open access and anti-blocking platform'}
+              {t('footer.tagline')}
             </p>
-            <p className="text-slate-600 text-[10px] mt-1 font-mono uppercase tracking-widest">© 2026 PIMX ECOSYSTEM</p>
+            <p className={`text-slate-600 text-[10px] mt-1 font-mono tracking-widest ${isFa ? '' : 'uppercase'}`}>
+              {t('footer.copy')}
+            </p>
           </div>
 
           <div className="flex items-center gap-6">
@@ -31,7 +33,7 @@ export const Footer: React.FC = () => {
               className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-primary/50 transition-all text-white font-bold shadow-lg"
             >
               <Globe className="w-5 h-5 text-primary" />
-              <span>X (Twitter)</span>
+              <span>{t('footer.social')}</span>
             </motion.a>
           </div>
         </div>

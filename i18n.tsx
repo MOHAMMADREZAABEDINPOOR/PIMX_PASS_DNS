@@ -78,7 +78,10 @@ const fa: Dict = {
   'admin.total': 'کل',
   'admin.avg': 'میانگین',
   'admin.max': 'بیشینه',
-  'admin.min': 'کمینه'
+  'admin.min': 'کمینه',
+  'footer.tagline': 'پلتفرم دسترسی آزاد و ضد سرکوب اینترنتی',
+  'footer.copy': '© 2026 زیست‌بوم PIMX',
+  'footer.social': 'صفحه رسمی'
 };
 
 const en: Dict = {
@@ -155,7 +158,10 @@ const en: Dict = {
   'admin.total': 'Total',
   'admin.avg': 'Average',
   'admin.max': 'Max',
-  'admin.min': 'Min'
+  'admin.min': 'Min',
+  'footer.tagline': 'Open access and anti-blocking platform',
+  'footer.copy': '© 2026 PIMX ECOSYSTEM',
+  'footer.social': 'Official Page'
 };
 
 const dict: Record<Lang, Dict> = { fa, en };
