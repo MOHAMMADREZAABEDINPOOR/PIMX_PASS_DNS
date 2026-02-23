@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Copy, Check, Server, Globe, ChevronDown, ChevronUp, Signal, Zap, Info } from 'lucide-react';
+import { Copy, Check, Server, Globe, ChevronDown, Info, BookOpen, Smartphone, Monitor, X } from 'lucide-react';
 import { DnsResult } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useI18n } from '../i18n';
@@ -12,6 +12,7 @@ interface ResultCardProps {
 export const ResultCard: React.FC<ResultCardProps> = ({ data, rank }) => {
   const [copied, setCopied] = useState<string | null>(null);
   const [expanded, setExpanded] = useState(false);
+  const [showGuide, setShowGuide] = useState(false);
   const { t, lang } = useI18n();
 
   const handleCopy = (text: string, key: string) => {
@@ -39,16 +40,40 @@ export const ResultCard: React.FC<ResultCardProps> = ({ data, rank }) => {
   const variantsToShow = useMemo(() => data.variants?.slice(0, 5) ?? [], [data.variants]);
   const moreVariants = data.variants && data.variants.length > 5 ? data.variants.length - 5 : 0;
 
+  const extractHost = (value: string) => {
+    try {
+      if (value.startsWith('http://') || value.startsWith('https://')) {
+        return new URL(value).hostname;
+      }
+      if (value.includes('://')) {
+        const asUrl = new URL(value);
+        return asUrl.hostname;
+      }
+    } catch {
+      // ignore
+    }
+    return value.replace(/^tls:\/\//, '').trim();
+  };
+
+  const isIPv4 = (value: string) => /^\d{1,3}(\.\d{1,3}){3}$/.test(value);
+  const host = extractHost(data.primary);
+  const isDoH = data.protocol === 'doh' || data.protocol === 'doh3' || data.primary.startsWith('https://');
+  const phonePrivateDns = !isIPv4(host) && !host.startsWith('sdns://') ? host : t('guide.notSupported');
+  const phoneCustomDoH = isDoH ? data.primary : host;
+  const pcDnsValue = isIPv4(data.primary) ? data.primary : t('guide.useUrl');
+  const browserValue = isDoH ? data.primary : host;
+
   return (
-    <motion.div
-      layout
-      variants={{
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0 }
-      }}
-      whileHover={{ y: -2, transition: { duration: 0.2 } }}
-      className={`relative rounded-2xl overflow-hidden group border border-white/5 bg-[#0F0F0F]/80 backdrop-blur-sm`}
-    >
+    <>
+      <motion.div
+        layout
+        variants={{
+          hidden: { opacity: 0, y: 20 },
+          visible: { opacity: 1, y: 0 }
+        }}
+        whileHover={{ y: -2, transition: { duration: 0.2 } }}
+        className={`relative rounded-2xl overflow-hidden group border border-white/5 bg-[#0F0F0F]/80 backdrop-blur-sm`}
+      >
         {/* Glow Effect on Hover */}
         <div className="absolute -inset-px bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-30 transition-opacity duration-500 blur-sm rounded-2xl pointer-events-none"></div>
 
@@ -136,12 +161,21 @@ export const ResultCard: React.FC<ResultCardProps> = ({ data, rank }) => {
                 <p className="text-xs text-slate-500 line-clamp-1 flex-1 pr-4">
                     {data.description || t('card.noDesc')}
                 </p>
-                <button 
-                    onClick={() => setExpanded(!expanded)} 
-                    className="text-xs font-bold text-primary hover:text-white transition-colors flex items-center gap-1"
-                >
-                    {expanded ? t('card.less') : t('card.more')} <ChevronDown className={`w-3 h-3 transition-transform ${expanded ? 'rotate-180' : ''}`} />
-                </button>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => setShowGuide(true)}
+                    className="text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-1"
+                  >
+                    <BookOpen className="w-3 h-3" />
+                    {t('guide.open')}
+                  </button>
+                  <button
+                      onClick={() => setExpanded(!expanded)}
+                      className="text-xs font-bold text-primary hover:text-white transition-colors flex items-center gap-1"
+                  >
+                      {expanded ? t('card.less') : t('card.more')} <ChevronDown className={`w-3 h-3 transition-transform ${expanded ? 'rotate-180' : ''}`} />
+                  </button>
+                </div>
             </div>
         </div>
 
@@ -220,10 +254,97 @@ export const ResultCard: React.FC<ResultCardProps> = ({ data, rank }) => {
                                 {data.source || t('card.local')}
                             </div>
                         </div>
+
+                        {/* Quick Setup Values */}
+                        <div className="md:col-span-2">
+                            <h4 className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-3">
+                              {t('guide.for')}
+                            </h4>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                              <div className="bg-white/5 rounded p-2 border border-white/10">
+                                <div className="text-[10px] text-slate-500 mb-1">{t('guide.phone')}</div>
+                                <code className="text-xs text-slate-300 break-all" title={phonePrivateDns}>{phonePrivateDns}</code>
+                              </div>
+                              <div className="bg-white/5 rounded p-2 border border-white/10">
+                                <div className="text-[10px] text-slate-500 mb-1">{t('guide.pc')}</div>
+                                <code className="text-xs text-slate-300 break-all" title={pcDnsValue}>{pcDnsValue}</code>
+                              </div>
+                              <div className="bg-white/5 rounded p-2 border border-white/10">
+                                <div className="text-[10px] text-slate-500 mb-1">{t('guide.browser')}</div>
+                                <code className="text-xs text-slate-300 break-all" title={browserValue}>{browserValue}</code>
+                              </div>
+                            </div>
+                        </div>
                     </div>
                 </motion.div>
             )}
         </AnimatePresence>
-    </motion.div>
+      </motion.div>
+
+      <AnimatePresence>
+        {showGuide && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center px-4"
+            onClick={() => setShowGuide(false)}
+          >
+            <motion.div
+              initial={{ y: 16, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 16, opacity: 0 }}
+              className="w-full max-w-2xl rounded-2xl bg-[#0f1117] border border-white/10 p-5"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h3 className="text-lg font-black text-white">{t('guide.title')}</h3>
+                  <p className="text-xs text-slate-400">{data.name}</p>
+                </div>
+                <button onClick={() => setShowGuide(false)} className="p-2 rounded bg-white/10 hover:bg-white/20 text-slate-300">
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              <div className="space-y-3">
+                <div className="rounded-xl border border-white/10 bg-white/5 p-3">
+                  <div className="text-sm font-bold text-white mb-2 flex items-center gap-2"><Smartphone className="w-4 h-4 text-emerald-400" /> {t('guide.phone')}</div>
+                  <div className="text-xs text-slate-400 mb-1">{t('guide.privateDns')}</div>
+                  <div className="flex items-center gap-2">
+                    <code className="text-xs text-slate-200 break-all flex-1">{phonePrivateDns}</code>
+                    <button onClick={() => handleCopy(phonePrivateDns, 'phone')} className="text-[10px] px-2 py-1 rounded bg-white/10 hover:bg-primary">{t('guide.copy')}</button>
+                  </div>
+                  <div className="text-xs text-slate-400 mt-2">{t('guide.customDoh')}</div>
+                  <div className="flex items-center gap-2">
+                    <code className="text-xs text-slate-200 break-all flex-1">{phoneCustomDoH}</code>
+                    <button onClick={() => handleCopy(phoneCustomDoH, 'phoneDoh')} className="text-[10px] px-2 py-1 rounded bg-white/10 hover:bg-primary">{t('guide.copy')}</button>
+                  </div>
+                  <div className="text-xs text-emerald-400 mt-2">{t('guide.androidApp')}: {t('guide.androidApp.value')}</div>
+                </div>
+
+                <div className="rounded-xl border border-white/10 bg-white/5 p-3">
+                  <div className="text-sm font-bold text-white mb-2 flex items-center gap-2"><Monitor className="w-4 h-4 text-cyan-400" /> {t('guide.pc')}</div>
+                  <div className="text-xs text-slate-400 mb-1">{t('guide.windows')}</div>
+                  <div className="flex items-center gap-2">
+                    <code className="text-xs text-slate-200 break-all flex-1">{pcDnsValue}</code>
+                    <button onClick={() => handleCopy(pcDnsValue, 'pc')} className="text-[10px] px-2 py-1 rounded bg-white/10 hover:bg-primary">{t('guide.copy')}</button>
+                  </div>
+                </div>
+
+                <div className="rounded-xl border border-white/10 bg-white/5 p-3">
+                  <div className="text-sm font-bold text-white mb-2 flex items-center gap-2"><Globe className="w-4 h-4 text-indigo-400" /> {t('guide.browser')}</div>
+                  <div className="text-xs text-slate-400 mb-1">{t('guide.customDoh')}</div>
+                  <div className="flex items-center gap-2">
+                    <code className="text-xs text-slate-200 break-all flex-1">{browserValue}</code>
+                    <button onClick={() => handleCopy(browserValue, 'browser')} className="text-[10px] px-2 py-1 rounded bg-white/10 hover:bg-primary">{t('guide.copy')}</button>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };

@@ -81,7 +81,22 @@ const fa: Dict = {
   'admin.min': 'کمینه',
   'footer.tagline': 'پلتفرم دسترسی آزاد و ضد سرکوب اینترنتی',
   'footer.copy': '© 2026 زیست‌بوم PIMX',
-  'footer.social': 'صفحه رسمی'
+  'footer.social': 'صفحه رسمی',
+  'guide.open': 'راهنما',
+  'guide.title': 'راهنمای استفاده',
+  'guide.for': 'برای DNS انتخاب‌شده',
+  'guide.phone': 'ورودی گوشی',
+  'guide.pc': 'ورودی کامپیوتر',
+  'guide.browser': 'ورودی مرورگر',
+  'guide.androidApp': 'اپ پیشنهادی اندروید',
+  'guide.androidApp.value': 'Intra / AdGuard / RethinkDNS',
+  'guide.close': 'بستن',
+  'guide.copy': 'کپی مقدار',
+  'guide.privateDns': 'Private DNS (Android)',
+  'guide.customDoh': 'Custom DoH',
+  'guide.windows': 'Windows DNS',
+  'guide.notSupported': 'برای Private DNS مناسب نیست (از اپ استفاده کنید)',
+  'guide.useUrl': 'این مقدار را در بخش Secure DNS/DoH وارد کنید'
 };
 
 const en: Dict = {
@@ -161,7 +176,22 @@ const en: Dict = {
   'admin.min': 'Min',
   'footer.tagline': 'Open access and anti-blocking platform',
   'footer.copy': '© 2026 PIMX ECOSYSTEM',
-  'footer.social': 'Official Page'
+  'footer.social': 'Official Page',
+  'guide.open': 'Guide',
+  'guide.title': 'Usage Guide',
+  'guide.for': 'For selected DNS',
+  'guide.phone': 'Phone Input',
+  'guide.pc': 'Computer Input',
+  'guide.browser': 'Browser Input',
+  'guide.androidApp': 'Recommended Android App',
+  'guide.androidApp.value': 'Intra / AdGuard / RethinkDNS',
+  'guide.close': 'Close',
+  'guide.copy': 'Copy Value',
+  'guide.privateDns': 'Private DNS (Android)',
+  'guide.customDoh': 'Custom DoH',
+  'guide.windows': 'Windows DNS',
+  'guide.notSupported': 'Not suitable for Private DNS (use app)',
+  'guide.useUrl': 'Use this value in Secure DNS/DoH settings'
 };
 
 const dict: Record<Lang, Dict> = { fa, en };
