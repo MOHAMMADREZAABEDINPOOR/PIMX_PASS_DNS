@@ -1,0 +1,15 @@
+{
+  "name": "PIMXPASS",
+  "short_name": "PIMXPASS",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/pimxpass-logo.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ]
+}
