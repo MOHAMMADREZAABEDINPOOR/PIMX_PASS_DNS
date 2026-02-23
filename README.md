@@ -7,6 +7,10 @@
 PIMX_PASS_DNS is a modern bilingual (EN/FA) DNS scanner platform that helps users find faster and more stable DNS endpoints using smart tests, ranking logic, and analytics.  
 It is designed for real-world speed, better reliability, and clean UX on both desktop and mobile. ⚡
 
+## 🔗 Live Website
+
+- 🌍 https://pimxpassdns.pages.dev/
+
 ## ✨ Core Features
 
 - ⚡ Fast DNS scanning and ranking
