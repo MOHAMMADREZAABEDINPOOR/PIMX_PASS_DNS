@@ -1,241 +1,150 @@
 <a id="readme-top"></a>
 
-# 🚀 PIMXPASS DNS
+# PIMX_PASS_DNS 🚀🌐
 
-[![READ](https://img.shields.io/badge/READ-3a3f4b?style=for-the-badge&labelColor=3a3f4b&color=3a3f4b)](#readme-top)
-[![PERSIAN DESCRIPTION](https://img.shields.io/badge/PERSIAN_DESCRIPTION-0b5fb3?style=for-the-badge&labelColor=0b5fb3&color=0b5fb3)](#persian-description)
+[![Persian Description](https://img.shields.io/badge/Read-Persian%20Description-0A66C2?style=for-the-badge)](#persian-description)
 
-**PIMXPASS DNS** is a modern, bilingual DNS scanner platform that helps users find the best DNS endpoints for their network with fast testing, smart ranking, strong UX, and Cloudflare-powered analytics.
+PIMX_PASS_DNS is a modern bilingual (EN/FA) DNS scanner platform that helps users find faster and more stable DNS endpoints using smart tests, ranking logic, and analytics.  
+It is designed for real-world speed, better reliability, and clean UX on both desktop and mobile. ⚡
 
-## 🌍 Languages
+## ✨ Core Features
 
-- 🇺🇸 **Primary:** English
-- 🇮🇷 **Secondary:** Persian (فارسی)
-
----
-
-## ✨ Highlights
-
-- ⚡ High-speed DNS scan and ranking
-- 🧠 Smart scan size selection (`20 / 70 / 150 / 300 / ALL / Custom`)
-- ⏹️ Stop scan mid-process and show best-so-far results
-- 💾 Save last scan results in browser (recoverable if user leaves page)
-- 🌗 Light/Dark theme with persistent settings
-- 🌐 Fully bilingual UI (`FA/EN`)
-- 📱 Responsive design for desktop and mobile
-- 🧩 PWA-ready setup (`manifest`, app icon)
-- 📊 Admin analytics dashboard with charts and time-range filters
+- ⚡ Fast DNS scanning and ranking
+- 🧠 Smart scan-size presets (`20 / 70 / 150 / 300 / ALL / Custom`)
+- ⏹️ Stop scanning anytime and keep best-so-far results
+- 💾 Save/recover latest scan result in browser
+- 🌗 Persistent Light/Dark mode
+- 🌐 Full bilingual UI (English / Persian)
+- 📱 Responsive interface for mobile and desktop
+- 📊 Admin analytics dashboard with charts and filters
 - ☁️ Cloudflare backend support (Pages Functions + D1)
 
----
+## 🤝 PIMX Ecosystem Bots
 
-## 🧱 Tech Stack
+- **PIMX_PASS_DNS 🚀**  
+  Smart DNS scanner + analytics system for better network performance.
 
-- `React 19`
-- `TypeScript`
-- `Vite`
-- `Framer Motion`
-- `Cloudflare Pages Functions`
-- `Cloudflare D1`
+- **PIMX_MOJI 🎨**  
+  Bilingual image-to-art bot that converts photos to ASCII, Mosaic, and Emoji styles.
 
----
+## 🛠️ Tech Stack
 
-## 🛠️ Local Development
+- React 19
+- TypeScript
+- Vite
+- Framer Motion
+- Cloudflare Pages Functions
+- Cloudflare D1
 
-### Prerequisites
+## 🚀 Local Development
 
-- `Node.js 18+`
+**Prerequisites:** Node.js 18+
 
-### Run
-
-1. Install dependencies:
+1. Install dependencies  
    `npm install`
-2. Start dev server:
+2. Start development server  
    `npm run dev`
-3. Open:
+3. Open  
    `http://localhost:5173`
-
----
 
 ## 🔐 Admin Panel
 
 - Route: `/pimxpassdnsadmin`
-- Username: `PIMX_PASS`
-- Password: `123456789PIMX_PASS@#$%^&`
-
----
+- Default username: `PIMX_PASS`
+- Default password: `123456789PIMX_PASS@#$%^&`
 
 ## ☁️ Cloudflare Deployment (D1 + Functions)
 
-This project includes a server-side analytics API:
+Main backend files:
 
 - `functions/api/analytics.js`
-
-And the D1 schema:
-
 - `cloudflare/d1-schema.sql`
 
-### Setup Steps
+Deployment flow:
 
-1. Create a `D1` database in Cloudflare.
-2. Apply `cloudflare/d1-schema.sql`.
-3. In Cloudflare Pages project settings, add D1 binding:
-   - `Variable = DB`
-   - `Target = your D1 database`
-4. Deploy the project to Cloudflare Pages.
-
-After deployment, frontend events are sent to `/api/analytics` and admin charts read from the same endpoint.
-
----
-
-## 📈 Analytics Model
-
-- Each browser gets a local `clientId`.
-- Visits are counted in **10-minute buckets**.
-- One user can generate at most one visit per bucket.
-- Example:
-  - 0-10 min => 1 visit
-  - 10-20 min => 2 visits
-  - 20-30 min => 3 visits
-- DNS test events store the number of tested DNS records.
-
----
+1. Create a D1 database in Cloudflare.
+2. Apply schema from `cloudflare/d1-schema.sql`.
+3. Bind D1 database to Pages project as `DB`.
+4. Deploy project to Cloudflare Pages.
 
 ## 📂 Project Structure
 
-- `App.tsx` => main app flow and state
-- `components/` => UI modules (`Header`, `Hero`, `Scanning`, `ResultCard`, `AdminPanel`, ...)
-- `services/pingService.ts` => DNS testing pipeline
-- `analytics.ts` => client analytics + API integration
-- `functions/api/analytics.js` => Cloudflare API endpoint
-- `cloudflare/d1-schema.sql` => database schema
-- `public/manifest.webmanifest` => PWA metadata
-
----
-
-## 🔎 Notes
-
-- For high traffic, add Cloudflare cache/rate-limit policies.
-- For production security, protect admin route behind Cloudflare Access / Zero Trust.
+- `App.tsx` main app flow and states
+- `components/` UI modules
+- `services/pingService.ts` DNS test pipeline
+- `analytics.ts` client-side analytics integration
+- `functions/api/analytics.js` analytics API endpoint
+- `cloudflare/d1-schema.sql` database schema
 
 ---
 
 <a id="persian-description"></a>
 
-# 🇮🇷 راهنمای فارسی (ترجمه کامل)
+# توضیحات فارسی 🇮🇷
 
-[![US](https://img.shields.io/badge/US-3a3f4b?style=for-the-badge&labelColor=3a3f4b&color=3a3f4b)](#readme-top)
-[![BACK TO ENGLISH](https://img.shields.io/badge/BACK_TO_ENGLISH-003a70?style=for-the-badge&labelColor=003a70&color=003a70)](#readme-top)
+[![Back to English](https://img.shields.io/badge/US-Back%20to%20English-002654?style=for-the-badge)](#readme-top)
 
-**PIMXPASS DNS** یک پلتفرم مدرن و دو‌زبانه برای اسکن DNS است که با تست سریع، رتبه‌بندی هوشمند، تجربه کاربری قوی و آنالیتیکس مبتنی بر Cloudflare به کاربران کمک می‌کند بهترین DNS را برای شبکه خود پیدا کنند.
+## PIMX_PASS_DNS 🚀🌐
 
-## 🌍 زبان‌ها
+**PIMX_PASS_DNS** یک پلتفرم مدرن و دو‌زبانه (فارسی/انگلیسی) برای اسکن DNS است که با تست هوشمند، رتبه‌بندی دقیق و آنالیتیکس، بهترین DNSها را برای اتصال سریع‌تر و پایدارتر پیدا می‌کند.  
+این پروژه برای استفاده واقعی، سرعت بالا و تجربه کاربری حرفه‌ای در دسکتاپ و موبایل ساخته شده است. ⚡
 
-- 🇺🇸 **اصلی:** انگلیسی
-- 🇮🇷 **ثانویه:** فارسی
+## ✨ قابلیت‌های اصلی
 
----
+- ⚡ اسکن و رتبه‌بندی سریع DNS
+- 🧠 پریست‌های هوشمند تعداد اسکن (`20 / 70 / 150 / 300 / ALL / Custom`)
+- ⏹️ امکان توقف اسکن در هر لحظه همراه با نگهداری بهترین نتایج
+- 💾 ذخیره و بازیابی آخرین نتیجه اسکن در مرورگر
+- 🌗 تم روشن/تاریک با ذخیره دائمی تنظیمات
+- 🌐 رابط کاربری کامل دو‌زبانه (فارسی/انگلیسی)
+- 📱 طراحی واکنش‌گرا برای موبایل و دسکتاپ
+- 📊 داشبورد تحلیل ادمین با نمودار و فیلتر زمانی
+- ☁️ پشتیبانی از بک‌اند Cloudflare (Functions + D1)
 
-## ✨ ویژگی‌های برجسته
+## 🤝 بات‌های اکوسیستم PIMX
 
-- ⚡ اسکن و رتبه‌بندی پرسرعت DNS
-- 🧠 انتخاب هوشمند تعداد اسکن (`20 / 70 / 150 / 300 / ALL / Custom`)
-- ⏹️ توقف اسکن در میانه مسیر و نمایش بهترین نتایج تا همان لحظه
-- 💾 ذخیره آخرین نتایج اسکن در مرورگر (قابل بازیابی اگر کاربر از صفحه خارج شود)
-- 🌗 تم روشن/تاریک با ذخیره پایدار تنظیمات
-- 🌐 رابط کاربری کاملاً دو‌زبانه (`FA/EN`)
-- 📱 طراحی ریسپانسیو برای دسکتاپ و موبایل
-- 🧩 آماده برای PWA (دارای `manifest` و آیکن اپ)
-- 📊 پنل مدیریت آنالیتیکس با نمودارها و فیلتر بازه‌های زمانی
-- ☁️ پشتیبانی بک‌اند Cloudflare (Pages Functions + D1)
+- **PIMX_PASS_DNS 🚀**  
+  موتور هوشمند اسکن DNS همراه با سیستم آنالیتیکس مدیریتی.
 
----
+- **PIMX_MOJI 🎨**  
+  بات دو‌زبانه تبدیل تصویر به هنر متنی (ASCII، موزاییک و ایموجی).
 
-## 🧱 تکنولوژی‌ها
+## 🛠️ تکنولوژی‌ها
 
-- `React 19`
-- `TypeScript`
-- `Vite`
-- `Framer Motion`
-- `Cloudflare Pages Functions`
-- `Cloudflare D1`
+- React 19
+- TypeScript
+- Vite
+- Framer Motion
+- Cloudflare Pages Functions
+- Cloudflare D1
 
----
+## 🚀 اجرای لوکال
 
-## 🛠️ اجرای محلی
+**پیش‌نیاز:** Node.js نسخه 18 یا بالاتر
 
-### پیش‌نیازها
-
-- `Node.js 18+`
-
-### اجرا
-
-1. نصب وابستگی‌ها:
+1. نصب وابستگی‌ها  
    `npm install`
-2. اجرای سرور توسعه:
+2. اجرای سرور توسعه  
    `npm run dev`
-3. باز کردن آدرس:
+3. باز کردن آدرس  
    `http://localhost:5173`
-
----
 
 ## 🔐 پنل مدیریت
 
 - مسیر: `/pimxpassdnsadmin`
-- نام کاربری: `PIMX_PASS`
-- رمز عبور: `123456789PIMX_PASS@#$%^&`
+- نام کاربری پیش‌فرض: `PIMX_PASS`
+- رمز عبور پیش‌فرض: `123456789PIMX_PASS@#$%^&`
 
----
+## ☁️ استقرار روی Cloudflare
 
-## ☁️ استقرار روی Cloudflare (D1 + Functions)
-
-این پروژه یک API سمت سرور برای آنالیتیکس دارد:
+فایل‌های اصلی بک‌اند:
 
 - `functions/api/analytics.js`
-
-و همچنین اسکیما دیتابیس D1:
-
 - `cloudflare/d1-schema.sql`
 
-### مراحل تنظیم
+مراحل استقرار:
 
-1. یک دیتابیس `D1` در Cloudflare بسازید.
-2. فایل `cloudflare/d1-schema.sql` را اعمال کنید.
-3. در تنظیمات پروژه Cloudflare Pages، بایندینگ D1 را اضافه کنید:
-   - `Variable = DB`
-   - `Target = your D1 database`
+1. یک دیتابیس D1 در Cloudflare بسازید.
+2. اسکیمای `cloudflare/d1-schema.sql` را اعمال کنید.
+3. دیتابیس را با نام `DB` به پروژه Pages متصل کنید.
 4. پروژه را روی Cloudflare Pages دیپلوی کنید.
-
-بعد از دیپلوی، رخدادهای فرانت‌اند به `/api/analytics` ارسال می‌شوند و نمودارهای پنل ادمین از همین endpoint خوانده می‌شوند.
-
----
-
-## 📈 مدل آنالیتیکس
-
-- هر مرورگر یک `clientId` محلی دریافت می‌کند.
-- بازدیدها در **باکت‌های ۱۰ دقیقه‌ای** شمارش می‌شوند.
-- هر کاربر در هر باکت فقط یک بازدید ثبت می‌کند.
-- مثال:
-  - 0-10 دقیقه => 1 بازدید
-  - 10-20 دقیقه => 2 بازدید
-  - 20-30 دقیقه => 3 بازدید
-- رخدادهای تست DNS تعداد DNSهای تست‌شده را ذخیره می‌کنند.
-
----
-
-## 📂 ساختار پروژه
-
-- `App.tsx` => جریان اصلی اپ و مدیریت state
-- `components/` => ماژول‌های رابط کاربری (`Header`, `Hero`, `Scanning`, `ResultCard`, `AdminPanel`, ...)
-- `services/pingService.ts` => پایپ‌لاین تست DNS
-- `analytics.ts` => آنالیتیکس کلاینت + اتصال API
-- `functions/api/analytics.js` => endpoint آنالیتیکس در Cloudflare
-- `cloudflare/d1-schema.sql` => اسکیما دیتابیس
-- `public/manifest.webmanifest` => متادیتای PWA
-
----
-
-## 🔎 نکات
-
-- برای ترافیک بالا، سیاست‌های cache/rate-limit در Cloudflare اضافه کنید.
-- برای امنیت پروداکشن، مسیر ادمین را پشت Cloudflare Access / Zero Trust قرار دهید.
