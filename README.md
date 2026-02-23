@@ -1,8 +1,9 @@
+<a id="readme-top"></a>
+
 # 🚀 PIMXPASS DNS
 
-<p>
-  <a href="#persian-guide"><kbd>🇮🇷 Read Persian Translation</kbd></a>
-</p>
+[![READ](https://img.shields.io/badge/READ-3a3f4b?style=for-the-badge&labelColor=3a3f4b&color=3a3f4b)](#readme-top)
+[![PERSIAN DESCRIPTION](https://img.shields.io/badge/PERSIAN_DESCRIPTION-0b5fb3?style=for-the-badge&labelColor=0b5fb3&color=0b5fb3)](#persian-description)
 
 **PIMXPASS DNS** is a modern, bilingual DNS scanner platform that helps users find the best DNS endpoints for their network with fast testing, smart ranking, strong UX, and Cloudflare-powered analytics.
 
@@ -119,13 +120,12 @@ After deployment, frontend events are sent to `/api/analytics` and admin charts 
 
 ---
 
-<a id="persian-guide"></a>
+<a id="persian-description"></a>
 
 # 🇮🇷 راهنمای فارسی (ترجمه کامل)
 
-<p>
-  <a href="#-pimxpass-dns"><kbd>🇺🇸 Back to English</kbd></a>
-</p>
+[![US](https://img.shields.io/badge/US-3a3f4b?style=for-the-badge&labelColor=3a3f4b&color=3a3f4b)](#readme-top)
+[![BACK TO ENGLISH](https://img.shields.io/badge/BACK_TO_ENGLISH-003a70?style=for-the-badge&labelColor=003a70&color=003a70)](#readme-top)
 
 **PIMXPASS DNS** یک پلتفرم مدرن و دو‌زبانه برای اسکن DNS است که با تست سریع، رتبه‌بندی هوشمند، تجربه کاربری قوی و آنالیتیکس مبتنی بر Cloudflare به کاربران کمک می‌کند بهترین DNS را برای شبکه خود پیدا کنند.
 
@@ -239,4 +239,3 @@ After deployment, frontend events are sent to `/api/analytics` and admin charts 
 
 - برای ترافیک بالا، سیاست‌های cache/rate-limit در Cloudflare اضافه کنید.
 - برای امنیت پروداکشن، مسیر ادمین را پشت Cloudflare Access / Zero Trust قرار دهید.
-
