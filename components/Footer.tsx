@@ -11,7 +11,10 @@ export const Footer: React.FC = () => {
     <footer className="mt-20 border-t border-white/10 bg-black/40 backdrop-blur-xl py-12">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className="mb-6 md:mb-0 text-center md:text-right" dir={isFa ? 'rtl' : 'ltr'}>
+          <div
+            className={`mb-6 md:mb-0 w-full ${isFa ? 'text-right' : 'text-left'}`}
+            dir={isFa ? 'rtl' : 'ltr'}
+          >
             <h2 className="text-2xl font-black tracking-tighter text-white font-mono leading-none">
               PIMX<span className="text-primary">PASS</span>
             </h2>
