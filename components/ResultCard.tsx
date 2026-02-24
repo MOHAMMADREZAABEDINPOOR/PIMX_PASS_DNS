@@ -56,13 +56,30 @@ export const ResultCard: React.FC<ResultCardProps> = ({ data, rank, isDark }) =>
     return value.replace(/^tls:\/\//, '').trim();
   };
 
+  const cleanDnsText = (raw: string) => {
+    let value = (raw || '').trim();
+    if (!value) return '';
+    value = value.split('<br>')[0].trim();
+    value = value.split('|')[0].trim();
+    value = value.replace(/:heavy_check_mark:/g, '').trim();
+    value = value.replace(/,+$/, '').trim();
+    if (!value.includes('://') && /^[A-Za-z0-9_-]{24,}$/.test(value) && /^A[gA-Za-z0-9]/.test(value)) {
+      value = `sdns://${value}`;
+    }
+    return value;
+  };
+
+  const primaryClean = cleanDnsText(data.primary);
+  const secondaryClean = cleanDnsText(data.secondary || '');
+
   const isIPv4 = (value: string) => /^\d{1,3}(\.\d{1,3}){3}$/.test(value);
-  const host = extractHost(data.primary);
-  const isDoH = data.protocol === 'doh' || data.protocol === 'doh3' || data.primary.startsWith('https://');
-  const phonePrivateDns = !isIPv4(host) && !host.startsWith('sdns://') ? host : t('guide.notSupported');
-  const phoneCustomDoH = isDoH ? data.primary : host;
-  const pcDnsValue = isIPv4(data.primary) ? data.primary : t('guide.useUrl');
-  const browserValue = isDoH ? data.primary : host;
+  const host = extractHost(primaryClean);
+  const isStamp = primaryClean.startsWith('sdns://');
+  const isDoH = data.protocol === 'doh' || data.protocol === 'doh3' || primaryClean.startsWith('https://');
+  const phonePrivateDns = !isIPv4(host) && !isStamp ? host : t('guide.notSupported');
+  const phoneCustomDoH = isStamp ? t('guide.dnsstamp') : (isDoH ? primaryClean : host);
+  const pcDnsValue = isStamp ? t('guide.useStampApp') : (isIPv4(primaryClean) ? primaryClean : t('guide.useUrl'));
+  const browserValue = isStamp ? t('guide.dnsstamp') : (isDoH ? primaryClean : host);
 
   return (
     <>
@@ -134,23 +151,23 @@ export const ResultCard: React.FC<ResultCardProps> = ({ data, rank, isDark }) =>
                 <div className="flex flex-col gap-2 w-full md:w-auto">
                     <div className="flex items-center gap-2 bg-black/40 rounded-lg p-1 pr-3 border border-white/5 hover:border-white/20 transition-colors">
                          <button 
-                            onClick={() => handleCopy(data.primary, 'primary')} 
+                            onClick={() => handleCopy(primaryClean, 'primary')} 
                             className="p-1.5 rounded bg-white/10 hover:bg-emerald-500 hover:text-black text-slate-400 transition-colors"
                          >
                             {copied === 'primary' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                          </button>
-                         <code className="font-mono text-sm text-slate-300 truncate max-w-[200px] md:max-w-[260px]" title={data.primary}>{data.primary}</code>
+                         <code className="font-mono text-sm text-slate-300 truncate max-w-[200px] md:max-w-[260px]" title={primaryClean}>{primaryClean}</code>
                          <span className="text-[10px] text-slate-600 ml-auto font-mono">{t('card.primary')}</span>
                     </div>
                     {data.secondary && (
                         <div className="flex items-center gap-2 bg-black/40 rounded-lg p-1 pr-3 border border-white/5 hover:border-white/20 transition-colors">
                              <button 
-                                onClick={() => handleCopy(data.secondary, 'secondary')} 
+                                onClick={() => handleCopy(secondaryClean, 'secondary')} 
                                 className="p-1.5 rounded bg-white/10 hover:bg-emerald-500 hover:text-black text-slate-400 transition-colors"
                              >
                                 {copied === 'secondary' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                              </button>
-                             <code className="font-mono text-sm text-slate-300 truncate max-w-[200px] md:max-w-[260px]" title={data.secondary}>{data.secondary}</code>
+                             <code className="font-mono text-sm text-slate-300 truncate max-w-[200px] md:max-w-[260px]" title={secondaryClean}>{secondaryClean}</code>
                              <span className="text-[10px] text-slate-600 ml-auto font-mono">{t('card.secondary')}</span>
                         </div>
                     )}
@@ -229,7 +246,7 @@ export const ResultCard: React.FC<ResultCardProps> = ({ data, rank, isDark }) =>
                                             </div>
                                             <div className="flex items-center gap-3">
                                                 <span className="text-xs font-mono text-slate-400">{v.latency}ms</span>
-                                                <button onClick={() => handleCopy(v.primary, `v${i}`)} className="text-[10px] px-2 py-1 bg-white/10 rounded hover:bg-primary hover:text-white transition-colors">
+                                                <button onClick={() => handleCopy(cleanDnsText(v.primary), `v${i}`)} className="text-[10px] px-2 py-1 bg-white/10 rounded hover:bg-primary hover:text-white transition-colors">
                                                     {t('card.copy')}
                                                 </button>
                                             </div>
@@ -325,12 +342,12 @@ export const ResultCard: React.FC<ResultCardProps> = ({ data, rank, isDark }) =>
                   <div className="text-xs text-slate-400 mb-1">{t('guide.privateDns')}</div>
                   <div className="flex items-center gap-2">
                     <code className={`text-xs break-all flex-1 ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>{phonePrivateDns}</code>
-                    <button onClick={() => handleCopy(phonePrivateDns, 'phone')} className={`text-[10px] px-2 py-1 rounded ${isDark ? 'bg-white/10 hover:bg-primary' : 'bg-slate-200 hover:bg-primary hover:text-white'}`}>{t('guide.copy')}</button>
+                    <button onClick={() => handleCopy(phonePrivateDns, 'phone')} className={`text-[10px] px-2 py-1 rounded ${isDark ? 'bg-white/10 hover:bg-primary' : 'bg-slate-200 hover:bg-primary hover:text-white'}`}>{copied === 'phone' ? t('guide.copied') : t('guide.copy')}</button>
                   </div>
                   <div className="text-xs text-slate-400 mt-2">{t('guide.customDoh')}</div>
                   <div className="flex items-center gap-2">
                     <code className={`text-xs break-all flex-1 ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>{phoneCustomDoH}</code>
-                    <button onClick={() => handleCopy(phoneCustomDoH, 'phoneDoh')} className={`text-[10px] px-2 py-1 rounded ${isDark ? 'bg-white/10 hover:bg-primary' : 'bg-slate-200 hover:bg-primary hover:text-white'}`}>{t('guide.copy')}</button>
+                    <button onClick={() => handleCopy(phoneCustomDoH, 'phoneDoh')} className={`text-[10px] px-2 py-1 rounded ${isDark ? 'bg-white/10 hover:bg-primary' : 'bg-slate-200 hover:bg-primary hover:text-white'}`}>{copied === 'phoneDoh' ? t('guide.copied') : t('guide.copy')}</button>
                   </div>
                   <div className="text-xs text-emerald-400 mt-2">{t('guide.androidApp')}: {t('guide.androidApp.value')}</div>
                 </div>
@@ -340,7 +357,7 @@ export const ResultCard: React.FC<ResultCardProps> = ({ data, rank, isDark }) =>
                   <div className="text-xs text-slate-400 mb-1">{t('guide.windows')}</div>
                   <div className="flex items-center gap-2">
                     <code className={`text-xs break-all flex-1 ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>{pcDnsValue}</code>
-                    <button onClick={() => handleCopy(pcDnsValue, 'pc')} className={`text-[10px] px-2 py-1 rounded ${isDark ? 'bg-white/10 hover:bg-primary' : 'bg-slate-200 hover:bg-primary hover:text-white'}`}>{t('guide.copy')}</button>
+                    <button onClick={() => handleCopy(pcDnsValue, 'pc')} className={`text-[10px] px-2 py-1 rounded ${isDark ? 'bg-white/10 hover:bg-primary' : 'bg-slate-200 hover:bg-primary hover:text-white'}`}>{copied === 'pc' ? t('guide.copied') : t('guide.copy')}</button>
                   </div>
                 </div>
 
@@ -349,7 +366,7 @@ export const ResultCard: React.FC<ResultCardProps> = ({ data, rank, isDark }) =>
                   <div className="text-xs text-slate-400 mb-1">{t('guide.customDoh')}</div>
                   <div className="flex items-center gap-2">
                     <code className={`text-xs break-all flex-1 ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>{browserValue}</code>
-                    <button onClick={() => handleCopy(browserValue, 'browser')} className={`text-[10px] px-2 py-1 rounded ${isDark ? 'bg-white/10 hover:bg-primary' : 'bg-slate-200 hover:bg-primary hover:text-white'}`}>{t('guide.copy')}</button>
+                    <button onClick={() => handleCopy(browserValue, 'browser')} className={`text-[10px] px-2 py-1 rounded ${isDark ? 'bg-white/10 hover:bg-primary' : 'bg-slate-200 hover:bg-primary hover:text-white'}`}>{copied === 'browser' ? t('guide.copied') : t('guide.copy')}</button>
                   </div>
                 </div>
               </div>

@@ -552,8 +552,42 @@ const BASE_DNS_LIST: DnsProvider[] = [
 const DNSVEIL_SOURCES = dnsveilSources as DnsProvider[];
 const DNSVEIL_USERDATA = dnsveilUserData as DnsProvider[];
 
+const sanitizeDnsValue = (raw?: string) => {
+  if (!raw) return '';
+  let value = raw.trim();
+  if (!value) return '';
+
+  // Keep only first endpoint when source contains notes/markdown.
+  value = value.split('<br>')[0].trim();
+  value = value.split('|')[0].trim();
+  value = value.replace(/:heavy_check_mark:/g, '').trim();
+  value = value.replace(/,+$/, '').trim();
+
+  // Some imported stamps may miss the sdns:// prefix.
+  if (!value.includes('://') && /^[A-Za-z0-9_-]{24,}$/.test(value) && /^A[gA-Za-z0-9]/.test(value)) {
+    value = `sdns://${value}`;
+  }
+
+  return value;
+};
+
+const sanitizeProvider = (item: DnsProvider): DnsProvider => {
+  const primary = sanitizeDnsValue(item.primary);
+  const secondary = sanitizeDnsValue(item.secondary);
+  const testTarget = sanitizeDnsValue(item.testTarget);
+
+  return {
+    ...item,
+    primary,
+    secondary,
+    testTarget
+  };
+};
+
 export const DNS_LIST: DnsProvider[] = [
   ...BASE_DNS_LIST,
   ...DNSVEIL_SOURCES,
   ...DNSVEIL_USERDATA
-];
+]
+  .map(sanitizeProvider)
+  .filter((item) => Boolean(item.primary));

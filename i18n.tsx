@@ -97,6 +97,9 @@ const fa: Dict = {
   'guide.windows': 'Windows DNS',
   'guide.notSupported': 'برای Private DNS مناسب نیست (از اپ استفاده کنید)',
   'guide.useUrl': 'این مقدار را در بخش Secure DNS/DoH وارد کنید'
+  ,'guide.copied': 'کپی شد'
+  ,'guide.dnsstamp': 'DNS Stamp (نیاز به اپ سازگار DNSCrypt)'
+  ,'guide.useStampApp': 'برای این مقدار از اپ Intra / AdGuard / RethinkDNS یا کلاینت سازگار استفاده کنید'
 };
 
 const en: Dict = {
@@ -192,6 +195,9 @@ const en: Dict = {
   'guide.windows': 'Windows DNS',
   'guide.notSupported': 'Not suitable for Private DNS (use app)',
   'guide.useUrl': 'Use this value in Secure DNS/DoH settings'
+  ,'guide.copied': 'Copied'
+  ,'guide.dnsstamp': 'DNS Stamp (requires DNSCrypt-compatible app)'
+  ,'guide.useStampApp': 'Use Intra / AdGuard / RethinkDNS or a DNSCrypt-compatible client for this value'
 };
 
 const dict: Record<Lang, Dict> = { fa, en };
