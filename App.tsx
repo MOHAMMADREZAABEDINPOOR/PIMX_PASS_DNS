@@ -546,7 +546,8 @@ const App: React.FC = () => {
                     <ResultCard 
                       key={result.id} 
                       data={result} 
-                      rank={index + 1} 
+                      rank={index + 1}
+                      isDark={isDark}
                     />
                   ))}
                 </motion.div>

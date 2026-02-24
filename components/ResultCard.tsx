@@ -7,9 +7,10 @@ import { useI18n } from '../i18n';
 interface ResultCardProps {
   data: DnsResult;
   rank: number;
+  isDark: boolean;
 }
 
-export const ResultCard: React.FC<ResultCardProps> = ({ data, rank }) => {
+export const ResultCard: React.FC<ResultCardProps> = ({ data, rank, isDark }) => {
   const [copied, setCopied] = useState<string | null>(null);
   const [expanded, setExpanded] = useState(false);
   const [showGuide, setShowGuide] = useState(false);
@@ -287,57 +288,68 @@ export const ResultCard: React.FC<ResultCardProps> = ({ data, rank }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center px-4"
+            className={`fixed inset-0 z-50 backdrop-blur-sm flex items-center justify-center px-4 ${
+              isDark ? 'bg-black/70' : 'bg-white/70'
+            }`}
             onClick={() => setShowGuide(false)}
           >
             <motion.div
               initial={{ y: 16, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 16, opacity: 0 }}
-              className="w-full max-w-2xl rounded-2xl bg-[#0f1117] border border-white/10 p-5"
+              className={`w-full max-w-2xl rounded-2xl p-5 ${
+                isDark
+                  ? 'bg-[#0f1117] border border-white/10'
+                  : 'bg-white border border-slate-200 text-slate-900'
+              }`}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h3 className="text-lg font-black text-white">{t('guide.title')}</h3>
+                  <h3 className={`text-lg font-black ${isDark ? 'text-white' : 'text-slate-900'}`}>{t('guide.title')}</h3>
                   <p className="text-xs text-slate-400">{data.name}</p>
                 </div>
-                <button onClick={() => setShowGuide(false)} className="p-2 rounded bg-white/10 hover:bg-white/20 text-slate-300">
+                <button
+                  onClick={() => setShowGuide(false)}
+                  className={`p-2 rounded ${
+                    isDark ? 'bg-white/10 hover:bg-white/20 text-slate-300' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                  }`}
+                >
                   <X className="w-4 h-4" />
                 </button>
               </div>
 
               <div className="space-y-3">
-                <div className="rounded-xl border border-white/10 bg-white/5 p-3">
-                  <div className="text-sm font-bold text-white mb-2 flex items-center gap-2"><Smartphone className="w-4 h-4 text-emerald-400" /> {t('guide.phone')}</div>
+                <div className={`rounded-xl p-3 ${isDark ? 'border border-white/10 bg-white/5' : 'border border-slate-200 bg-slate-50'}`}>
+                  <div className={`text-sm font-bold mb-2 flex items-center gap-2 ${isDark ? 'text-white' : 'text-slate-900'}`}><Smartphone className="w-4 h-4 text-emerald-400" /> {t('guide.phone')}</div>
                   <div className="text-xs text-slate-400 mb-1">{t('guide.privateDns')}</div>
                   <div className="flex items-center gap-2">
-                    <code className="text-xs text-slate-200 break-all flex-1">{phonePrivateDns}</code>
-                    <button onClick={() => handleCopy(phonePrivateDns, 'phone')} className="text-[10px] px-2 py-1 rounded bg-white/10 hover:bg-primary">{t('guide.copy')}</button>
+                    <code className={`text-xs break-all flex-1 ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>{phonePrivateDns}</code>
+                    <button onClick={() => handleCopy(phonePrivateDns, 'phone')} className={`text-[10px] px-2 py-1 rounded ${isDark ? 'bg-white/10 hover:bg-primary' : 'bg-slate-200 hover:bg-primary hover:text-white'}`}>{t('guide.copy')}</button>
                   </div>
                   <div className="text-xs text-slate-400 mt-2">{t('guide.customDoh')}</div>
                   <div className="flex items-center gap-2">
-                    <code className="text-xs text-slate-200 break-all flex-1">{phoneCustomDoH}</code>
-                    <button onClick={() => handleCopy(phoneCustomDoH, 'phoneDoh')} className="text-[10px] px-2 py-1 rounded bg-white/10 hover:bg-primary">{t('guide.copy')}</button>
+                    <code className={`text-xs break-all flex-1 ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>{phoneCustomDoH}</code>
+                    <button onClick={() => handleCopy(phoneCustomDoH, 'phoneDoh')} className={`text-[10px] px-2 py-1 rounded ${isDark ? 'bg-white/10 hover:bg-primary' : 'bg-slate-200 hover:bg-primary hover:text-white'}`}>{t('guide.copy')}</button>
                   </div>
                   <div className="text-xs text-emerald-400 mt-2">{t('guide.androidApp')}: {t('guide.androidApp.value')}</div>
                 </div>
 
-                <div className="rounded-xl border border-white/10 bg-white/5 p-3">
-                  <div className="text-sm font-bold text-white mb-2 flex items-center gap-2"><Monitor className="w-4 h-4 text-cyan-400" /> {t('guide.pc')}</div>
+                <div className={`rounded-xl p-3 ${isDark ? 'border border-white/10 bg-white/5' : 'border border-slate-200 bg-slate-50'}`}>
+                  <div className={`text-sm font-bold mb-2 flex items-center gap-2 ${isDark ? 'text-white' : 'text-slate-900'}`}><Monitor className="w-4 h-4 text-cyan-400" /> {t('guide.pc')}</div>
                   <div className="text-xs text-slate-400 mb-1">{t('guide.windows')}</div>
                   <div className="flex items-center gap-2">
-                    <code className="text-xs text-slate-200 break-all flex-1">{pcDnsValue}</code>
-                    <button onClick={() => handleCopy(pcDnsValue, 'pc')} className="text-[10px] px-2 py-1 rounded bg-white/10 hover:bg-primary">{t('guide.copy')}</button>
+                    <code className={`text-xs break-all flex-1 ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>{pcDnsValue}</code>
+                    <button onClick={() => handleCopy(pcDnsValue, 'pc')} className={`text-[10px] px-2 py-1 rounded ${isDark ? 'bg-white/10 hover:bg-primary' : 'bg-slate-200 hover:bg-primary hover:text-white'}`}>{t('guide.copy')}</button>
                   </div>
                 </div>
 
-                <div className="rounded-xl border border-white/10 bg-white/5 p-3">
-                  <div className="text-sm font-bold text-white mb-2 flex items-center gap-2"><Globe className="w-4 h-4 text-indigo-400" /> {t('guide.browser')}</div>
+                <div className={`rounded-xl p-3 ${isDark ? 'border border-white/10 bg-white/5' : 'border border-slate-200 bg-slate-50'}`}>
+                  <div className={`text-sm font-bold mb-2 flex items-center gap-2 ${isDark ? 'text-white' : 'text-slate-900'}`}><Globe className="w-4 h-4 text-indigo-400" /> {t('guide.browser')}</div>
                   <div className="text-xs text-slate-400 mb-1">{t('guide.customDoh')}</div>
                   <div className="flex items-center gap-2">
-                    <code className="text-xs text-slate-200 break-all flex-1">{browserValue}</code>
-                    <button onClick={() => handleCopy(browserValue, 'browser')} className="text-[10px] px-2 py-1 rounded bg-white/10 hover:bg-primary">{t('guide.copy')}</button>
+                    <code className={`text-xs break-all flex-1 ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>{browserValue}</code>
+                    <button onClick={() => handleCopy(browserValue, 'browser')} className={`text-[10px] px-2 py-1 rounded ${isDark ? 'bg-white/10 hover:bg-primary' : 'bg-slate-200 hover:bg-primary hover:text-white'}`}>{t('guide.copy')}</button>
                   </div>
                 </div>
               </div>
