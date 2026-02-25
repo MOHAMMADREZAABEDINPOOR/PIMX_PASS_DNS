@@ -16,6 +16,33 @@ const json = (body, status = 200) =>
 const badRequest = (message) => json({ error: message }, 400);
 const serverError = (message, details) => json({ error: message, details }, 500);
 
+const resolveDbBinding = (env) => {
+  if (!env || typeof env !== 'object') return null;
+
+  // Preferred explicit binding
+  if (env.DB && typeof env.DB.prepare === 'function') return env.DB;
+
+  // Common alternative names
+  const candidates = ['db', 'D1', 'pimxpassdns', 'PIMXPASSDNS'];
+  for (const key of candidates) {
+    const value = env[key];
+    if (value && typeof value.prepare === 'function') return value;
+  }
+
+  // Last-resort auto-detect by shape
+  for (const value of Object.values(env)) {
+    if (
+      value &&
+      typeof value === 'object' &&
+      typeof value.prepare === 'function' &&
+      typeof value.batch === 'function'
+    ) {
+      return value;
+    }
+  }
+  return null;
+};
+
 const ensureSchema = async (db) => {
   await db.batch([
     db.prepare(
@@ -45,8 +72,16 @@ const ensureSchema = async (db) => {
 export const onRequestOptions = async () => new Response(null, { status: 204, headers: CORS_HEADERS });
 
 export const onRequestPost = async (context) => {
-  const db = context.env?.DB;
-  if (!db) return json({ error: 'D1 binding "DB" is not configured' }, 500);
+  const db = resolveDbBinding(context.env);
+  if (!db) {
+    return json(
+      {
+        error: 'D1 binding "DB" is not configured',
+        envKeys: Object.keys(context.env || {})
+      },
+      500
+    );
+  }
   await ensureSchema(db);
 
   let payload = null;
@@ -106,8 +141,16 @@ export const onRequestPost = async (context) => {
 };
 
 export const onRequestGet = async (context) => {
-  const db = context.env?.DB;
-  if (!db) return json({ error: 'D1 binding "DB" is not configured' }, 500);
+  const db = resolveDbBinding(context.env);
+  if (!db) {
+    return json(
+      {
+        error: 'D1 binding "DB" is not configured',
+        envKeys: Object.keys(context.env || {})
+      },
+      500
+    );
+  }
   await ensureSchema(db);
 
   const url = new URL(context.request.url);
