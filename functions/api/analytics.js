@@ -18,34 +18,13 @@ const serverError = (message, details) => json({ error: message, details }, 500)
 
 const resolveDbBinding = (env) => {
   if (!env || typeof env !== 'object') return null;
-
-  // Preferred explicit binding
   if (env.DB && typeof env.DB.prepare === 'function') return env.DB;
-
-  // Common alternative names
-  const candidates = ['db', 'D1', 'pimxpassdns', 'PIMXPASSDNS'];
-  for (const key of candidates) {
-    const value = env[key];
-    if (value && typeof value.prepare === 'function') return value;
-  }
-
-  // Last-resort auto-detect by shape
-  for (const value of Object.values(env)) {
-    if (
-      value &&
-      typeof value === 'object' &&
-      typeof value.prepare === 'function' &&
-      typeof value.batch === 'function'
-    ) {
-      return value;
-    }
-  }
   return null;
 };
 
 const ensureSchema = async (db) => {
-  await db.batch([
-    db.prepare(
+  await db
+    .prepare(
       `CREATE TABLE IF NOT EXISTS visits (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         client_id TEXT NOT NULL,
@@ -54,19 +33,21 @@ const ensureSchema = async (db) => {
         location TEXT NOT NULL,
         device TEXT NOT NULL
       )`
-    ),
-    db.prepare(
+    )
+    .run();
+  await db
+    .prepare(
       `CREATE TABLE IF NOT EXISTS tests (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         client_id TEXT NOT NULL,
         ts INTEGER NOT NULL,
         dns_count INTEGER NOT NULL
       )`
-    ),
-    db.prepare(`CREATE INDEX IF NOT EXISTS idx_visits_ts ON visits (ts)`),
-    db.prepare(`CREATE INDEX IF NOT EXISTS idx_visits_client_bucket ON visits (client_id, bucket)`),
-    db.prepare(`CREATE INDEX IF NOT EXISTS idx_tests_ts ON tests (ts)`),
-  ]);
+    )
+    .run();
+  await db.prepare(`CREATE INDEX IF NOT EXISTS idx_visits_ts ON visits (ts)`).run();
+  await db.prepare(`CREATE INDEX IF NOT EXISTS idx_visits_client_bucket ON visits (client_id, bucket)`).run();
+  await db.prepare(`CREATE INDEX IF NOT EXISTS idx_tests_ts ON tests (ts)`).run();
 };
 
 export const onRequestOptions = async () => new Response(null, { status: 204, headers: CORS_HEADERS });
