@@ -63,6 +63,20 @@ const App: React.FC = () => {
   }, [lang, dir, t]);
 
   useEffect(() => {
+    const pathname = window.location.pathname.replace(/\/+$/, '');
+    const isAdminRoute = pathname.endsWith('/pimxpassdnsadmin');
+    let robotsMeta = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null;
+    if (!robotsMeta) {
+      robotsMeta = document.createElement('meta');
+      robotsMeta.name = 'robots';
+      document.head.appendChild(robotsMeta);
+    }
+    robotsMeta.content = isAdminRoute
+      ? 'noindex, nofollow, noarchive'
+      : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+  }, []);
+
+  useEffect(() => {
     try {
       const raw = localStorage.getItem(LAST_RESULTS_KEY);
       if (!raw) return;

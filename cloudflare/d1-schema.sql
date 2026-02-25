@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS visits (
   device TEXT NOT NULL
 );
 
-CREATE UNIQUE INDEX IF NOT EXISTS idx_visits_client_bucket
+CREATE INDEX IF NOT EXISTS idx_visits_client_bucket
 ON visits (client_id, bucket);
 
 CREATE INDEX IF NOT EXISTS idx_visits_ts
