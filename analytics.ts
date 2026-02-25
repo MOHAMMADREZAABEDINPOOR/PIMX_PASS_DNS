@@ -132,20 +132,27 @@ export const recordTest = (dnsCount: number) => {
 };
 
 export const getAnalytics = async (rangeMs?: number) => {
-  try {
-    const from = Date.now() - (rangeMs || 10 * 24 * 60 * 60 * 1000);
-    const res = await fetch(`${API_PATH}?from=${from}`, {
-      method: 'GET',
-      headers: { accept: 'application/json' }
-    });
-    if (!res.ok) throw new Error('analytics fetch failed');
-    const data = (await res.json()) as AnalyticsStore;
-    return {
-      visits: Array.isArray(data.visits) ? data.visits : [],
-      tests: Array.isArray(data.tests) ? data.tests : []
-    };
-  } catch {
-    return loadStore();
+  const from = Date.now() - (rangeMs || 10 * 24 * 60 * 60 * 1000);
+  const res = await fetch(`${API_PATH}?from=${from}`, {
+    method: 'GET',
+    headers: { accept: 'application/json' }
+  });
+  if (!res.ok) {
+    let details = `HTTP ${res.status}`;
+    try {
+      const body = await res.json();
+      if (body?.error) {
+        details = body.details ? `${body.error}: ${body.details}` : body.error;
+      }
+    } catch {
+      // keep default details
+    }
+    throw new Error(details);
   }
+  const data = (await res.json()) as AnalyticsStore;
+  return {
+    visits: Array.isArray(data.visits) ? data.visits : [],
+    tests: Array.isArray(data.tests) ? data.tests : []
+  };
 };
 

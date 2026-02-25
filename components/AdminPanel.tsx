@@ -224,6 +224,7 @@ export const AdminPanel: React.FC = () => {
   const [authed, setAuthed] = useState(sessionStorage.getItem('pimxpassdns_admin') === '1');
   const [error, setError] = useState('');
   const [rangeKey, setRangeKey] = useState('1h');
+  const [apiError, setApiError] = useState('');
 
   const range = ranges.find(r => r.key === rangeKey) ?? ranges[0];
 
@@ -234,9 +235,15 @@ export const AdminPanel: React.FC = () => {
   useEffect(() => {
     let alive = true;
     const update = async () => {
-      const data = await getAnalytics(range.ms);
-      if (!alive) return;
-      setAnalytics(data);
+      try {
+        const data = await getAnalytics(range.ms);
+        if (!alive) return;
+        setAnalytics(data);
+        setApiError('');
+      } catch (err) {
+        if (!alive) return;
+        setApiError(err instanceof Error ? err.message : 'Failed to load analytics');
+      }
     };
     void update();
     const id = setInterval(() => {
@@ -354,6 +361,12 @@ export const AdminPanel: React.FC = () => {
           <div className="text-2xl font-black">{formatNumber(dnsCount)}</div>
         </div>
       </div>
+
+      {apiError && (
+        <div className="mb-4 rounded-2xl border border-rose-500/40 bg-rose-500/10 px-4 py-3 text-xs font-semibold text-rose-300">
+          API Error: {apiError}
+        </div>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-white/5 border border-white/10 rounded-2xl p-4 admin-card">
