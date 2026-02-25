@@ -63,8 +63,8 @@ const ensureSchema = async (db) => {
         dns_count INTEGER NOT NULL
       )`
     ),
-    db.prepare(`CREATE UNIQUE INDEX IF NOT EXISTS idx_visits_client_bucket ON visits (client_id, bucket)`),
     db.prepare(`CREATE INDEX IF NOT EXISTS idx_visits_ts ON visits (ts)`),
+    db.prepare(`CREATE INDEX IF NOT EXISTS idx_visits_client_bucket ON visits (client_id, bucket)`),
     db.prepare(`CREATE INDEX IF NOT EXISTS idx_tests_ts ON tests (ts)`),
   ]);
 };
@@ -82,7 +82,11 @@ export const onRequestPost = async (context) => {
       500
     );
   }
-  await ensureSchema(db);
+  try {
+    await ensureSchema(db);
+  } catch (err) {
+    return serverError('failed to ensure schema', err instanceof Error ? err.message : String(err));
+  }
 
   let payload = null;
   try {
@@ -102,11 +106,21 @@ export const onRequestPost = async (context) => {
     const device = String(payload?.device || 'desktop').slice(0, 20);
     if (!Number.isFinite(bucket)) return badRequest('invalid bucket');
 
-    // One visit per user per 10-minute bucket.
+    // One visit per user per 10-minute bucket (without relying on unique index).
     try {
+      const existing = await db
+        .prepare(
+          `SELECT id FROM visits
+           WHERE client_id = ?1 AND bucket = ?2
+           LIMIT 1`
+        )
+        .bind(clientId, bucket)
+        .first();
+      if (existing) return json({ ok: true, deduped: true });
+
       await db
         .prepare(
-          `INSERT OR IGNORE INTO visits (client_id, bucket, ts, location, device)
+          `INSERT INTO visits (client_id, bucket, ts, location, device)
            VALUES (?1, ?2, ?3, ?4, ?5)`
         )
         .bind(clientId, bucket, ts, location, device)
@@ -151,7 +165,11 @@ export const onRequestGet = async (context) => {
       500
     );
   }
-  await ensureSchema(db);
+  try {
+    await ensureSchema(db);
+  } catch (err) {
+    return serverError('failed to ensure schema', err instanceof Error ? err.message : String(err));
+  }
 
   const url = new URL(context.request.url);
   const from = Number(url.searchParams.get('from') || Date.now() - 10 * 24 * 60 * 60 * 1000);
