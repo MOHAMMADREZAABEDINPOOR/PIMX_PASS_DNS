@@ -18,7 +18,7 @@ type AnalyticsStore = {
 
 const STORAGE_KEY = 'pimxpassdns_analytics_v1';
 const CLIENT_ID_KEY = 'pimxpassdns_client_id';
-const LAST_VISIT_BUCKET_KEY = 'pimxpassdns_last_visit_bucket';
+const LAST_VISIT_TS_KEY = 'pimxpassdns_last_visit_ts';
 const MAX_EVENTS = 10000;
 const VISIT_BUCKET_MS = 10 * 60 * 1000;
 const API_PATH = '/api/analytics';
@@ -84,15 +84,15 @@ export const normalizeLocation = (country?: string, city?: string) => {
 };
 
 export const recordVisit = (location: string) => {
-  const bucket = Math.floor(Date.now() / VISIT_BUCKET_MS);
-  const lastBucketRaw = localStorage.getItem(LAST_VISIT_BUCKET_KEY);
-  const lastBucket = lastBucketRaw ? Number(lastBucketRaw) : null;
-  if (lastBucket === bucket) return;
-  localStorage.setItem(LAST_VISIT_BUCKET_KEY, String(bucket));
+  const timestamp = Date.now();
+  const lastVisitRaw = localStorage.getItem(LAST_VISIT_TS_KEY);
+  const lastVisit = lastVisitRaw ? Number(lastVisitRaw) : 0;
+  if (Number.isFinite(lastVisit) && timestamp - lastVisit < VISIT_BUCKET_MS) return;
+  localStorage.setItem(LAST_VISIT_TS_KEY, String(timestamp));
 
   const device = getDeviceType();
   const clientId = getClientId();
-  const timestamp = Date.now();
+  const bucket = Math.floor(timestamp / VISIT_BUCKET_MS);
 
   const store = loadStore();
   store.visits.push({

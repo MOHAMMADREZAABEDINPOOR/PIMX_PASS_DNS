@@ -323,11 +323,19 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const tick = () => {
+      if (document.visibilityState !== 'visible') return;
       recordVisit(normalizeLocation(connection?.country, connection?.city));
     };
     tick();
     const id = setInterval(tick, 60 * 1000);
-    return () => clearInterval(id);
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') tick();
+    };
+    document.addEventListener('visibilitychange', onVisible);
+    return () => {
+      clearInterval(id);
+      document.removeEventListener('visibilitychange', onVisible);
+    };
   }, [connection]);
 
   const pathname = window.location.pathname.replace(/\/+$/, '');
