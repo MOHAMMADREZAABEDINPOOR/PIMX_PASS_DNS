@@ -1,154 +1,35 @@
-<a id="readme-top"></a>
+<div align="center">
 
-# PIMX_PASS_DNS 🚀🌐
+# 🚀 PIMX_PASS_DNS 🌐⚡
 
-[![Persian Description](https://img.shields.io/badge/Read-Persian%20Description-0A66C2?style=for-the-badge)](#persian-description)
+### Modern Bilingual DNS Scanner, Latency Benchmark & Cloudflare D1 Intelligence Suite
 
-PIMX_PASS_DNS is a modern bilingual (EN/FA) DNS scanner platform that helps users find faster and more stable DNS endpoints using smart tests, ranking logic, and analytics.  
-It is designed for real-world speed, better reliability, and clean UX on both desktop and mobile. ⚡
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg?style=for-the-badge)](https://www.gnu.org/licenses/agpl-3.0)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Cloudflare D1](https://img.shields.io/badge/Database-Cloudflare_D1-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://developers.cloudflare.com/d1/)
+[![Live Demo](https://img.shields.io/badge/Live_Site-pimxpassdns.pages.dev-0ea5e9?style=for-the-badge)](https://pimxpassdns.pages.dev/)
+[![Read in Persian](https://img.shields.io/badge/مطالعه_به_فارسی-Persian_README-008080?style=for-the-badge)](#-توضیحات-فارسی-persian-description)
 
-## 🔗 Live Website
+<p align="center">
+  A high-speed bilingual (EN/FA) DNS scanner designed to identify the fastest, most resilient, and uncensored DNS resolvers. Integrates automated ranking algorithms, live ping metrics, and Cloudflare D1 persistent telemetry.
+</p>
 
-- 🌍 https://pimxpassdns.pages.dev/
-
-## ✨ Core Features
-
-- ⚡ Fast DNS scanning and ranking
-- 🧠 Smart scan-size presets (`20 / 70 / 150 / 300 / ALL / Custom`)
-- ⏹️ Stop scanning anytime and keep best-so-far results
-- 💾 Save/recover latest scan result in browser
-- 🌗 Persistent Light/Dark mode
-- 🌐 Full bilingual UI (English / Persian)
-- 📱 Responsive interface for mobile and desktop
-- 📊 Admin analytics dashboard with charts and filters
-- ☁️ Cloudflare backend support (Pages Functions + D1)
-
-## 🤝 PIMX Ecosystem Bots
-
-- **PIMX_PASS_DNS 🚀**  
-  Smart DNS scanner + analytics system for better network performance.
-
-- **PIMX_MOJI 🎨**  
-  Bilingual image-to-art bot that converts photos to ASCII, Mosaic, and Emoji styles.
-
-## 🛠️ Tech Stack
-
-- React 19
-- TypeScript
-- Vite
-- Framer Motion
-- Cloudflare Pages Functions
-- Cloudflare D1
-
-## 🚀 Local Development
-
-**Prerequisites:** Node.js 18+
-
-1. Install dependencies  
-   `npm install`
-2. Start development server  
-   `npm run dev`
-3. Open  
-   `http://localhost:5173`
-
-## 🔐 Admin Panel
-
-- Route: `/pimxpassdnsadmin`
-- Default username: `PIMX_PASS`
-- Default password: `123456789PIMX_PASS@#$%^&`
-
-## ☁️ Cloudflare Deployment (D1 + Functions)
-
-Main backend files:
-
-- `functions/api/analytics.js`
-- `cloudflare/d1-schema.sql`
-
-Deployment flow:
-
-1. Create a D1 database in Cloudflare.
-2. Apply schema from `cloudflare/d1-schema.sql`.
-3. Bind D1 database to Pages project as `DB`.
-4. Deploy project to Cloudflare Pages.
-
-## 📂 Project Structure
-
-- `App.tsx` main app flow and states
-- `components/` UI modules
-- `services/pingService.ts` DNS test pipeline
-- `analytics.ts` client-side analytics integration
-- `functions/api/analytics.js` analytics API endpoint
-- `cloudflare/d1-schema.sql` database schema
+</div>
 
 ---
 
-<a id="persian-description"></a>
+## ⚡ Features
+- 🧠 **Adaptive Scanning Presets**: Flexible scan sizes (20 / 70 / Full catalog) with parallel DNS probes.
+- 📊 **Intelligent Ranking**: Weighted scores evaluating resolve latency, jitter, and packet loss.
+- 💾 **Cloudflare D1 Synchronization**: Cloud storage for global DNS performance histories and admin analytics.
 
-# توضیحات فارسی 🇮🇷
+---
 
-[![Back to English](https://img.shields.io/badge/US-Back%20to%20English-002654?style=for-the-badge)](#readme-top)
+## 🇮🇷 توضیحات فارسی (Persian Description)
+### معرفی اسکنر هوشمند DNS PIMX_PASS_DNS
+پلتفرم **PIMX_PASS_DNS** یک ابزار حرفه‌ای و دوزبانه برای تست، رتبه‌بندی و پیدا کردن سریع‌ترین و پایدارترین سرورهای DNS است که به کاربران در کاهش تاخیر بازی‌ها و عبور از تحریم‌های اینترنتی کمک می‌کند.
 
-## PIMX_PASS_DNS 🚀🌐
+---
 
-**PIMX_PASS_DNS** یک پلتفرم مدرن و دو‌زبانه (فارسی/انگلیسی) برای اسکن DNS است که با تست هوشمند، رتبه‌بندی دقیق و آنالیتیکس، بهترین DNSها را برای اتصال سریع‌تر و پایدارتر پیدا می‌کند.  
-این پروژه برای استفاده واقعی، سرعت بالا و تجربه کاربری حرفه‌ای در دسکتاپ و موبایل ساخته شده است. ⚡
-
-## ✨ قابلیت‌های اصلی
-
-- ⚡ اسکن و رتبه‌بندی سریع DNS
-- 🧠 پریست‌های هوشمند تعداد اسکن (`20 / 70 / 150 / 300 / ALL / Custom`)
-- ⏹️ امکان توقف اسکن در هر لحظه همراه با نگهداری بهترین نتایج
-- 💾 ذخیره و بازیابی آخرین نتیجه اسکن در مرورگر
-- 🌗 تم روشن/تاریک با ذخیره دائمی تنظیمات
-- 🌐 رابط کاربری کامل دو‌زبانه (فارسی/انگلیسی)
-- 📱 طراحی واکنش‌گرا برای موبایل و دسکتاپ
-- 📊 داشبورد تحلیل ادمین با نمودار و فیلتر زمانی
-- ☁️ پشتیبانی از بک‌اند Cloudflare (Functions + D1)
-
-## 🤝 بات‌های اکوسیستم PIMX
-
-- **PIMX_PASS_DNS 🚀**  
-  موتور هوشمند اسکن DNS همراه با سیستم آنالیتیکس مدیریتی.
-
-- **PIMX_MOJI 🎨**  
-  بات دو‌زبانه تبدیل تصویر به هنر متنی (ASCII، موزاییک و ایموجی).
-
-## 🛠️ تکنولوژی‌ها
-
-- React 19
-- TypeScript
-- Vite
-- Framer Motion
-- Cloudflare Pages Functions
-- Cloudflare D1
-
-## 🚀 اجرای لوکال
-
-**پیش‌نیاز:** Node.js نسخه 18 یا بالاتر
-
-1. نصب وابستگی‌ها  
-   `npm install`
-2. اجرای سرور توسعه  
-   `npm run dev`
-3. باز کردن آدرس  
-   `http://localhost:5173`
-
-## 🔐 پنل مدیریت
-
-- مسیر: `/pimxpassdnsadmin`
-- نام کاربری پیش‌فرض: `PIMX_PASS`
-- رمز عبور پیش‌فرض: `123456789PIMX_PASS@#$%^&`
-
-## ☁️ استقرار روی Cloudflare
-
-فایل‌های اصلی بک‌اند:
-
-- `functions/api/analytics.js`
-- `cloudflare/d1-schema.sql`
-
-مراحل استقرار:
-
-1. یک دیتابیس D1 در Cloudflare بسازید.
-2. اسکیمای `cloudflare/d1-schema.sql` را اعمال کنید.
-3. دیتابیس را با نام `DB` به پروژه Pages متصل کنید.
-4. پروژه را روی Cloudflare Pages دیپلوی کنید.
+## 📜 License
+Licensed under the **GNU AGPLv3 License**. Copyright (c) 2026 MOHAMMADREZA ABEDINPOOR.
