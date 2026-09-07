@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="100%" height="100%">
+  <defs>
+    <linearGradient id="dnsBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020d1a" /><stop offset="50%" stop-color="#06182e" /><stop offset="100%" stop-color="#020914" />
+    </linearGradient>
+    <linearGradient id="dnsNeon" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4"><animate attributeName="stop-color" values="#06b6d4;#10b981;#3b82f6;#06b6d4" dur="7s" repeatCount="indefinite" /></stop>
+      <stop offset="50%" stop-color="#10b981"><animate attributeName="stop-color" values="#10b981;#06b6d4;#6366f1;#10b981" dur="7s" repeatCount="indefinite" /></stop>
+      <stop offset="100%" stop-color="#3b82f6"><animate attributeName="stop-color" values="#3b82f6;#06b6d4;#10b981;#3b82f6" dur="7s" repeatCount="indefinite" /></stop>
+    </linearGradient>
+    <linearGradient id="dnsGrid" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0" /><stop offset="100%" stop-color="#10b981" stop-opacity="0.35" />
+    </linearGradient>
+    <filter id="dnsGlow"><feGaussianBlur stdDeviation="5" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+  </defs>
+
+  <style>
+    @keyframes dnsRadar { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    @keyframes dnsPing { 0% { r: 10; opacity: 0.9; } 100% { r: 80; opacity: 0; } }
+    .radar-sweep { transform-origin: center; animation: dnsRadar 6s linear infinite; }
+  </style>
+
+  <rect width="1200" height="360" fill="url(#dnsBg)" />
+
+  <!-- 3D Perspective Ground -->
+  <g opacity="0.65">
+    <line x1="0" y1="260" x2="1200" y2="260" stroke="#06b6d4" stroke-opacity="0.25" stroke-width="1" />
+    <line x1="600" y1="260" x2="0" y2="360" stroke="url(#dnsGrid)" stroke-width="1.5" />
+    <line x1="600" y1="260" x2="200" y2="360" stroke="url(#dnsGrid)" stroke-width="1.5" />
+    <line x1="600" y1="260" x2="400" y2="360" stroke="url(#dnsGrid)" stroke-width="1.5" />
+    <line x1="600" y1="260" x2="600" y2="360" stroke="url(#dnsGrid)" stroke-width="1.5" />
+    <line x1="600" y1="260" x2="800" y2="360" stroke="url(#dnsGrid)" stroke-width="1.5" />
+    <line x1="600" y1="260" x2="1000" y2="360" stroke="url(#dnsGrid)" stroke-width="1.5" />
+    <line x1="600" y1="260" x2="1200" y2="360" stroke="url(#dnsGrid)" stroke-width="1.5" />
+    <line x1="0" y1="290" x2="1200" y2="290" stroke="#06b6d4" stroke-opacity="0.2" stroke-width="1" />
+    <line x1="0" y1="330" x2="1200" y2="330" stroke="#10b981" stroke-opacity="0.3" stroke-width="1.5" />
+  </g>
+
+  <!-- Ambient Light -->
+  <circle cx="220" cy="110" r="140" fill="#06b6d4" opacity="0.08" filter="url(#dnsGlow)" />
+  <circle cx="960" cy="180" r="160" fill="#10b981" opacity="0.12" filter="url(#dnsGlow)" />
+
+  <!-- 3D Holographic DNS Radar Globe & Telemetry -->
+  <g transform="translate(940, 180)">
+    <!-- Concentric Radar Rings -->
+    <circle cx="0" cy="0" r="100" fill="none" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.6" />
+    <circle cx="0" cy="0" r="70" fill="none" stroke="#10b981" stroke-width="1.5" stroke-dasharray="2 4" opacity="0.5" />
+    <circle cx="0" cy="0" r="40" fill="none" stroke="#3b82f6" stroke-width="1" opacity="0.4" />
+
+    <!-- Expanding Ping Wave -->
+    <circle cx="0" cy="0" r="10" fill="none" stroke="#06b6d4" stroke-width="2">
+      <animate attributeName="r" values="10;85" dur="2.5s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0.9;0" dur="2.5s" repeatCount="indefinite" />
+    </circle>
+
+    <!-- Radar Sweep Line -->
+    <line x1="0" y1="0" x2="0" y2="-98" stroke="url(#dnsNeon)" stroke-width="2" class="radar-sweep" filter="url(#dnsGlow)" />
+
+    <!-- Center DoH Lock Core -->
+    <circle cx="0" cy="0" r="14" fill="#06b6d4" filter="url(#dnsGlow)">
+      <animate attributeName="fill" values="#06b6d4;#10b981;#3b82f6;#06b6d4" dur="6s" repeatCount="indefinite" />
+    </circle>
+
+    <!-- Floating DNS Server Badges -->
+    <g transform="translate(-120, -50)">
+      <rect x="0" y="0" width="82" height="22" rx="6" fill="#051424" stroke="#06b6d4" stroke-width="1" />
+      <text x="41" y="15" font-family="'Fira Code', monospace" font-size="10" font-weight="bold" fill="#22d3ee" text-anchor="middle">RFC 8484 DoH</text>
+    </g>
+    <g transform="translate(65, 30)">
+      <rect x="0" y="0" width="75" height="22" rx="6" fill="#051424" stroke="#10b981" stroke-width="1" />
+      <text x="37" y="15" font-family="'Fira Code', monospace" font-size="10" font-weight="bold" fill="#34d399" text-anchor="middle">CF D1 SQL</text>
+    </g>
+    <g transform="translate(-40, 70)">
+      <rect x="0" y="0" width="82" height="22" rx="6" fill="#051424" stroke="#3b82f6" stroke-width="1" />
+      <text x="41" y="15" font-family="'Fira Code', monospace" font-size="10" font-weight="bold" fill="#60a5fa" text-anchor="middle">1.2ms PING</text>
+    </g>
+  </g>
+
+  <!-- Left Typography -->
+  <g transform="translate(80, 140)">
+    <g transform="translate(0, -35)">
+      <rect x="0" y="-14" width="255" height="24" rx="12" fill="#06b6d4" fill-opacity="0.12" stroke="#06b6d4" stroke-width="1" />
+      <circle cx="12" cy="-2" r="4" fill="#06b6d4" />
+      <text x="26" y="2" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="800" fill="#06b6d4" letter-spacing="2">NETWORK RADAR &amp; BENCHMARK</text>
+    </g>
+
+    <text x="0" y="32" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Montserrat', sans-serif" font-size="52" font-weight="900" fill="url(#dnsNeon)" filter="url(#dnsGlow)" letter-spacing="3">
+      PIMX_PASS_DNS
+    </text>
+
+    <text x="0" y="68" font-family="'Fira Code', monospace" font-size="16" font-weight="600" fill="#e2e8f0" letter-spacing="1">
+      ⚡ Modern DoH Scanner, Latency Benchmark &amp; Cloudflare D1 Analytics
+    </text>
+
+    <g transform="translate(0, 92)">
+      <rect x="0" y="0" width="165" height="26" rx="6" fill="#05182c" stroke="#06b6d4" stroke-width="1" />
+      <text x="82" y="17" font-family="'Fira Code', monospace" font-size="11" font-weight="bold" fill="#22d3ee" text-anchor="middle">📡 DNS-over-HTTPS</text>
+
+      <rect x="175" y="0" width="160" height="26" rx="6" fill="#05182c" stroke="#10b981" stroke-width="1" />
+      <text x="255" y="17" font-family="'Fira Code', monospace" font-size="11" font-weight="bold" fill="#34d399" text-anchor="middle">🗄️ Cloudflare D1 SQL</text>
+
+      <rect x="345" y="0" width="150" height="26" rx="6" fill="#05182c" stroke="#3b82f6" stroke-width="1" />
+      <text x="420" y="17" font-family="'Fira Code', monospace" font-size="11" font-weight="bold" fill="#60a5fa" text-anchor="middle">⚡ Real-Time Jitter</text>
+
+      <rect x="505" y="0" width="150" height="26" rx="6" fill="#05182c" stroke="#a855f7" stroke-width="1" />
+      <text x="580" y="17" font-family="'Fira Code', monospace" font-size="11" font-weight="bold" fill="#c084fc" text-anchor="middle">🛡️ Anti-Poisoning</text>
+    </g>
+  </g>
+
+  <line x1="0" y1="358" x2="1200" y2="358" stroke="url(#dnsNeon)" stroke-width="3" filter="url(#dnsGlow)" />
+</svg>

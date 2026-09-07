@@ -23,7 +23,7 @@
 [![Cloudflare D1](https://img.shields.io/badge/Database-Cloudflare_D1_SQL-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://developers.cloudflare.com/d1/)
 [![DoH RFC 8484](https://img.shields.io/badge/Protocol-DoH_RFC_8484-0052CC?style=for-the-badge)](https://tools.ietf.org/html/rfc8484)
 [![Tailwind CSS](https://img.shields.io/badge/Styling-Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Read in Persian](https://img.shields.io/badge/مطالعه_به_فارسی-Persian_README-008080?style=for-the-badge)](#-بخش-فوقالعاده-مفصل-و-جامع-به-زبان-فارسی-persian-documentation)
+[![Read in Persian](https://img.shields.io/badge/مطالعه_به_فارسی-Persian_README-008080?style=for-the-badge)](#persian-documentation)
 
 <p align="center">
   <b>PIMX_PASS_DNS</b> is a high-precision network intelligence utility and automated benchmark workstation engineered to evaluate, rank, and diagnose DNS resolvers worldwide. Leveraging encrypted DNS-over-HTTPS (DoH RFC 8484) protocols, statistical jitter analysis, and Cloudflare D1 distributed edge SQL logging, PIMX_PASS_DNS identifies ISP poisoning, unmasks transparent interception, and pinpoints the lowest-latency DNS for any connection.
@@ -38,7 +38,7 @@
 [DNS Engine Details](#-dns-over-https-engine--methodology) •
 [Installation Guide](#-quick-start--local-development) •
 [Cloudflare D1 Setup](#-cloudflare-d1-edge-database-setup) •
-[توضیحات فارسی](#-بخش-فوقالعاده-مفصل-و-جامع-به-زبان-فارسی-persian-documentation) •
+[توضیحات فارسی](#persian-documentation) •
 [Roadmap](#-strategic-engineering-roadmap) •
 [License](#-copyleft-license--legal-attribution)
 
@@ -224,7 +224,8 @@ npx wrangler pages deploy dist --project-name=pimx-pass-dns
 
 ---
 
-## 🇮🇷 بخش فوق‌العاده مفصل و جامع به زبان فارسی (Persian Documentation)
+## Persian Documentation
+### 🇮🇷 مستندات فوق‌العاده مفصل، جامع و فنی به زبان فارسی
 
 ### ۱. مقدمه و چرایی ساخت اسکنر تخصصی PIMX_PASS_DNS
 پروژه **PIMX_PASS_DNS** یک سامانه تحلیلی و ابزار بنچمارک شبکه فوق‌العاده پیشرفته است که برای حل یکی از اصلی‌ترین مشکلات اینترنت در ایران و جهان طراحی شده است: **کندی، مسموم‌سازی کش و فیلترینگ در لایه دی‌ان‌اس (DNS)**.
@@ -277,7 +278,7 @@ Under this copyleft covenant, any derivative software, hosted web application, o
 <!-- ============================================================================== -->
 <!-- ANIMATED CAPSULE FOOTER                                                        -->
 <!-- ============================================================================== -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=1,12,24,30&height=120&section=footer" alt="Footer" width="100%" />
+<img src="./assets/footer.svg" alt="PIMX_PASS_DNS 3D Footer" width="100%" />
 
 <sub>Architected with precision by <a href="https://github.com/MOHAMMADREZAABEDINPOOR"><b>MOHAMMADREZA ABEDINPOOR</b></a>. If PIMX_PASS_DNS accelerates your connection, please leave a ⭐!</sub>
 

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 140" width="100%" height="100%">
+  <defs>
+    <linearGradient id="dnsFBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020914" /><stop offset="50%" stop-color="#06182e" /><stop offset="100%" stop-color="#020914" />
+    </linearGradient>
+    <linearGradient id="dnsFNeon" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" /><stop offset="50%" stop-color="#10b981" /><stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+    <filter id="dnsFGlow"><feGaussianBlur stdDeviation="4" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+  </defs>
+  <rect width="1200" height="140" fill="url(#dnsFBg)" />
+  <line x1="0" y1="2" x2="1200" y2="2" stroke="url(#dnsFNeon)" stroke-width="3" filter="url(#dnsFGlow)" />
+  <text x="600" y="55" font-family="'Segoe UI', sans-serif" font-size="20" font-weight="900" fill="url(#dnsFNeon)" text-anchor="middle" letter-spacing="3" filter="url(#dnsFGlow)">
+    PIMX_PASS_DNS // HIGH-INTEGRITY RESOLVER TELEMETRY
+  </text>
+  <text x="600" y="85" font-family="'Fira Code', monospace" font-size="13" font-weight="500" fill="#94a3b8" text-anchor="middle">
+    Architected &amp; Vibe Coded with high-leverage AI choreography by MOHAMMADREZA ABEDINPOOR
+  </text>
+  <text x="600" y="112" font-family="'Fira Code', monospace" font-size="11" font-weight="bold" fill="#06b6d4" text-anchor="middle" opacity="0.8">
+    ★ STAR THIS REPOSITORY ON GITHUB TO SUPPORT HIGH-SPEED UNCENSORED RESOLVERS ★
+  </text>
+</svg>
