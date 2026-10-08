@@ -8,6 +8,12 @@
 
 # 🌐 PIMX PASS DNS
 
+<!-- pimx-live-site:start -->
+## Live website
+
+**[Open PIMX_PASS_DNS ↗](https://pimxpassdns.pages.dev/)**
+<!-- pimx-live-site:end -->
+
 A bilingual DNS comparison interface with curated resolver sources, browser-based timing tests, result cards and an optional analytics backend.
 
 [GitHub](https://github.com/MOHAMMADREZAABEDINPOOR/PIMX_PASS_DNS) · [PIMX / Profile](https://github.com/MOHAMMADREZAABEDINPOOR) · [Static artwork](assets/readme/hero.png)
