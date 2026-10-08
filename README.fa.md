@@ -10,6 +10,12 @@
 
 # 🌐 PIMX PASS DNS
 
+<!-- pimx-live-site:start -->
+## وب‌سایت آنلاین
+
+**[مشاهدهٔ PIMX_PASS_DNS ↗](https://pimxpassdns.pages.dev/)**
+<!-- pimx-live-site:end -->
+
 رابط دوزبانه مقایسه DNS با منابع گردآوری‌شده، آزمون زمان پاسخ در مرورگر، کارت نتیجه و بک‌اند اختیاری آمار.
 
 [GitHub](https://github.com/MOHAMMADREZAABEDINPOOR/PIMX_PASS_DNS) · [PIMX / Profile](https://github.com/MOHAMMADREZAABEDINPOOR) · [بنر ثابت](assets/readme/hero.png)
