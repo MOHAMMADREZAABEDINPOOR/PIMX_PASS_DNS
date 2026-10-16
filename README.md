@@ -1,6 +1,6 @@
 <div align="center">
 
-<a href="https://pimxpassdns.pages.dev/"><img src="assets/readme/hero.gif" width="1200" alt="PIMX PASS DNS: animated project artwork" /></a>
+<a href="https://pimxpassdns.pages.dev/"><img src="assets/readme/hero.gif" width="1200" alt="PIMX PASS DNS: original animated 3D illustration" /></a>
 
 [English](README.md) · [فارسی](README.fa.md) · [Live website ↗](https://pimxpassdns.pages.dev/)
 
@@ -11,10 +11,6 @@
 # PIMX PASS DNS
 
 Compare DNS resolvers on your own connection with real DNS-over-HTTPS queries, a live 3D network, saved comparisons and device setup guides. Keep network-specific history, import custom resolvers and export results.
-
-<a href="https://pimxpassdns.pages.dev/"><img src="assets/readme/redesign.gif" width="1200" alt="Preview of the redesigned interface: PIMX PASS DNS" /></a>
-
-[Preview of the redesigned interface · PNG](assets/readme/redesign.png) · [Static artwork](assets/readme/hero.png)
 
 ## What you can do
 
