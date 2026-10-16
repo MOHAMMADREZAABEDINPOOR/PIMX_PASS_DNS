@@ -1,0 +1,10 @@
+name = "pimx-dns-monitor"
+main = "monitor.js"
+compatibility_date = "2026-10-15"
+
+[triggers]
+crons = ["*/5 * * * *"]
+
+[[kv_namespaces]]
+binding = "MONITOR_KV"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"

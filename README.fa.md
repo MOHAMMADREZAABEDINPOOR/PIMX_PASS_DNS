@@ -1,3 +1,5 @@
+راهنمای بازطراحی، امکانات آزمایشگاه، تست‌ها و راه‌اندازی پایش: [LAB_GUIDE.fa.md](LAB_GUIDE.fa.md).
+
 <div align="center">
 
 <img src="assets/readme/hero.gif" width="1200" alt="PIMX PASS DNS: a resolver globe linked to a ranked server array" />
@@ -9,12 +11,6 @@
 <div dir="rtl">
 
 # 🌐 PIMX PASS DNS
-
-<!-- pimx-live-site:start -->
-## وب‌سایت آنلاین
-
-**[مشاهدهٔ PIMX_PASS_DNS ↗](https://pimxpassdns.pages.dev/)**
-<!-- pimx-live-site:end -->
 
 رابط دوزبانه مقایسه DNS با منابع گردآوری‌شده، آزمون زمان پاسخ در مرورگر، کارت نتیجه و بک‌اند اختیاری آمار.
 

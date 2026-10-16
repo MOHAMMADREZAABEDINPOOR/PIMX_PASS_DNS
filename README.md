@@ -1,3 +1,9 @@
+The redesigned DNS laboratory includes live 3D network rendering, genuine DoH measurements, comparisons, network history, saved collections, custom imports, setup guides, JSON/CSV/TXT/PNG/QR exports, an offline PWA and bilingual static SEO pages. See [the implementation and deployment guide (Persian)](LAB_GUIDE.fa.md). Scheduled service health requires the supplied Cloudflare Worker and a shared `MONITOR_KV` binding; it is not provisioned by the frontend build.
+
+The explanatory home lives at `/` (Persian) and `/en/` (English). Start DNS test opens the separate laboratory at `/test/` or `/en/test/`. The cobalt interface includes light/dark themes, a bilingual loading screen, an accessible source listbox and reduced-motion support. `npm test` runs the browser and measurement checks.
+
+Device setup has dedicated `/guide/` and `/en/guide/` pages. Shared styled selectors support search for long catalogs, keyboard operation and modal-safe positioning. The production build generates six localized HTML pages and caches all six for offline navigation.
+
 <div align="center">
 
 <img src="assets/readme/hero.gif" width="1200" alt="PIMX PASS DNS: a resolver globe linked to a ranked server array" />
@@ -7,12 +13,6 @@
 </div>
 
 # 🌐 PIMX PASS DNS
-
-<!-- pimx-live-site:start -->
-## Live website
-
-**[Open PIMX_PASS_DNS ↗](https://pimxpassdns.pages.dev/)**
-<!-- pimx-live-site:end -->
 
 A bilingual DNS comparison interface with curated resolver sources, browser-based timing tests, result cards and an optional analytics backend.
 

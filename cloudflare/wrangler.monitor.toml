@@ -1,0 +1,11 @@
+name = "pimxpassdns-monitor"
+main = "monitor.js"
+compatibility_date = "2026-10-15"
+workers_dev = true
+
+[triggers]
+crons = ["*/5 * * * *"]
+
+[[kv_namespaces]]
+binding = "MONITOR_KV"
+id = "bb553e8e4e254b8a80870c3a364b322d"

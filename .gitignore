@@ -10,7 +10,19 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+test-results
+playwright-report
 *.local
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+.wrangler/
+.deployment/
+.impeccable/review/
+.taste-skill/
+*.zip
 
 # Editor directories and files
 .vscode/*

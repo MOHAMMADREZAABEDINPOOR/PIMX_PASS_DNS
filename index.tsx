@@ -16,3 +16,9 @@ root.render(
     </I18nProvider>
   </React.StrictMode>
 );
+
+if (import.meta.env.PROD && 'serviceWorker' in navigator && !window.location.pathname.includes('pimxpassdnsadmin')) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => { /* The app also works without offline installation. */ });
+  });
+}

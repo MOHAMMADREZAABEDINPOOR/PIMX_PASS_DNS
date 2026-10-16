@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://pimxpassdns.pages.dev/</loc>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
+<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<url><loc>https://pimxpassdns.pages.dev/</loc><xhtml:link rel="alternate" hreflang="fa" href="https://pimxpassdns.pages.dev/"/><xhtml:link rel="alternate" hreflang="en" href="https://pimxpassdns.pages.dev/en/"/><changefreq>weekly</changefreq><priority>1.0</priority></url>
+<url><loc>https://pimxpassdns.pages.dev/en/</loc><xhtml:link rel="alternate" hreflang="fa" href="https://pimxpassdns.pages.dev/"/><xhtml:link rel="alternate" hreflang="en" href="https://pimxpassdns.pages.dev/en/"/><changefreq>weekly</changefreq><priority>1.0</priority></url>
+<url><loc>https://pimxpassdns.pages.dev/test/</loc><xhtml:link rel="alternate" hreflang="fa" href="https://pimxpassdns.pages.dev/test/"/><xhtml:link rel="alternate" hreflang="en" href="https://pimxpassdns.pages.dev/en/test/"/><changefreq>weekly</changefreq><priority>0.9</priority></url>
+<url><loc>https://pimxpassdns.pages.dev/en/test/</loc><xhtml:link rel="alternate" hreflang="fa" href="https://pimxpassdns.pages.dev/test/"/><xhtml:link rel="alternate" hreflang="en" href="https://pimxpassdns.pages.dev/en/test/"/><changefreq>weekly</changefreq><priority>0.9</priority></url>
+<url><loc>https://pimxpassdns.pages.dev/guide/</loc><xhtml:link rel="alternate" hreflang="fa" href="https://pimxpassdns.pages.dev/guide/"/><xhtml:link rel="alternate" hreflang="en" href="https://pimxpassdns.pages.dev/en/guide/"/><changefreq>weekly</changefreq><priority>0.9</priority></url>
+<url><loc>https://pimxpassdns.pages.dev/en/guide/</loc><xhtml:link rel="alternate" hreflang="fa" href="https://pimxpassdns.pages.dev/guide/"/><xhtml:link rel="alternate" hreflang="en" href="https://pimxpassdns.pages.dev/en/guide/"/><changefreq>weekly</changefreq><priority>0.9</priority></url>
 </urlset>
-

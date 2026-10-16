@@ -1,0 +1,783 @@
+/* Explanatory diagrams and interactive home surfaces share the laboratory tokens. */
+.home-exp-section {
+  width: min(1320px, calc(100% - 104px));
+  margin: clamp(90px, 10vw, 150px) auto 0;
+}
+.experience-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 38px;
+}
+.experience-heading h2,
+.purpose-copy > h2 {
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.6;
+  font-weight: 750;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.experience-heading > p {
+  max-width: 380px;
+  font-size: 15px;
+  line-height: 2;
+  color: var(--muted);
+}
+.experience-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 48px;
+  margin-top: 22px;
+  font-size: 15px;
+  font-weight: 650;
+  color: var(--positive);
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 8px;
+  transition: text-decoration-color 180ms;
+}
+.experience-link:hover {
+  text-decoration-color: currentColor;
+}
+.experience-link svg {
+  flex-shrink: 0;
+}
+.signal-stage {
+  position: relative;
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 30px 5% 28px;
+  overflow: hidden;
+}
+.signal-diagram {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  direction: ltr;
+}
+.signal-wire {
+  stroke: var(--line);
+  stroke-width: 2;
+}
+.signal-flow {
+  stroke: var(--positive);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 15;
+  animation: signal-flow 3s linear infinite;
+  opacity: 0.7;
+}
+.signal-packet {
+  fill: var(--positive);
+}
+.signal-node {
+  stroke: var(--muted);
+  stroke-width: 1.7;
+  transition: stroke 320ms;
+}
+.signal-node rect,
+.signal-resolver > path:first-child {
+  fill: var(--ground);
+}
+.signal-node.active {
+  stroke: var(--positive);
+}
+.signal-node .signal-screen,
+.signal-core-face {
+  fill: var(--surface-raised);
+}
+.signal-core-dot {
+  fill: var(--positive);
+  stroke: none;
+}
+.signal-diagram text {
+  fill: var(--muted);
+  font-size: 15px;
+  text-anchor: middle;
+  font-family: inherit;
+  stroke: none;
+}
+.signal-caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 30px;
+  font-size: 14px;
+  color: var(--positive);
+  text-align: center;
+}
+.signal-live-dot {
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.signal-explanation {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 8%;
+  margin-top: 30px;
+  align-items: start;
+}
+.signal-controls {
+  display: flex;
+  flex-direction: column;
+}
+.signal-controls > button {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  padding: 17px 8px;
+  text-align: start;
+  min-height: 60px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+}
+.signal-controls > button:first-child {
+  border-top: 1px solid var(--line);
+}
+.signal-controls > button[aria-pressed="true"] {
+  color: var(--ink);
+}
+.signal-controls > button[aria-pressed="true"] > svg {
+  color: var(--positive);
+}
+.signal-step {
+  margin-inline-start: auto;
+  font-size: 12px;
+  color: var(--subtle);
+}
+.signal-detail {
+  padding-top: 15px;
+}
+.signal-detail h3 {
+  font-size: 21px;
+  font-weight: 700;
+}
+.signal-detail p {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 2;
+  margin-top: 12px;
+  min-height: 105px;
+  max-width: 58ch;
+}
+.home-purpose {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 8%;
+  align-items: center;
+}
+.purpose-intro {
+  max-width: 440px;
+  font-size: 16px;
+  line-height: 2;
+  color: var(--muted);
+  margin-top: 20px;
+}
+.purpose-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 26px;
+}
+.purpose-switch > button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 13px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.purpose-switch > button:hover {
+  background: var(--surface);
+}
+.purpose-switch > button[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.purpose-description {
+  margin-top: 25px;
+  min-height: 160px;
+}
+.purpose-description h3 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.8;
+}
+.purpose-description p {
+  font-size: 15px;
+  line-height: 2;
+  color: var(--muted);
+  margin-top: 8px;
+  max-width: 54ch;
+}
+.purpose-instrument {
+  min-width: 0;
+}
+.purpose-perspective {
+  height: 385px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  perspective: 1000px;
+}
+.purpose-deck {
+  width: 290px;
+  height: 245px;
+  position: relative;
+  transform-style: preserve-3d;
+}
+.instrument-plane,
+.instrument-face {
+  width: 290px;
+  height: 245px;
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: var(--surface-raised);
+  transform-style: preserve-3d;
+}
+.plane-back {
+  transform: translate3d(25px, 28px, -80px) rotateX(48deg) rotateZ(-30deg);
+  background: var(--surface);
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.plane-back > span {
+  width: 2px;
+  height: 120px;
+  background: var(--line);
+  transform: rotate(35deg);
+}
+.plane-middle {
+  transform: translate3d(0, -12px, -30px) rotateX(48deg) rotateZ(-30deg);
+  background: var(--surface-hover);
+}
+.plane-middle svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--positive);
+  stroke-width: 1;
+}
+.plane-middle svg > path {
+  stroke-width: 2;
+}
+.instrument-face {
+  transform: translate3d(-20px, -50px, 30px) rotateX(48deg) rotateZ(-30deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: #2454c7;
+  box-shadow: 16px 36px 40px -27px #050c2480;
+  overflow: hidden;
+}
+.instrument-face.face-gaming {
+  background: #244aa5;
+}
+.instrument-face.face-privacy {
+  background: #203d80;
+}
+.instrument-face.face-family {
+  background: #315fa8;
+}
+.instrument-emblem {
+  z-index: 1;
+}
+.instrument-name {
+  margin-top: 8px;
+  font-size: 21px;
+  font-weight: 700;
+  z-index: 1;
+}
+.instrument-brand {
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  margin-top: 13px;
+  opacity: 0.85;
+  direction: ltr;
+}
+.instrument-orbit {
+  position: absolute;
+  width: 178px;
+  height: 178px;
+  border: 1px dashed #ffffff55;
+  border-radius: 50%;
+  animation: instrument-spin 30s linear infinite;
+}
+.purpose-instrument-caption {
+  text-align: center;
+  padding: 0 12px;
+}
+.purpose-instrument-caption > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-size: 14px;
+  color: var(--positive);
+}
+.purpose-instrument-caption > p {
+  margin: 12px auto 0;
+  max-width: 340px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+  min-height: 50px;
+}
+.toolkit-layout {
+  display: grid;
+  grid-template-columns: 0.65fr 1.35fr;
+  gap: 6%;
+}
+.toolkit-switch {
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+}
+.toolkit-switch > button {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  text-align: start;
+  padding: 22px 12px;
+  min-height: 78px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  font-size: 17px;
+}
+.toolkit-switch > button:first-child {
+  border-top: 1px solid var(--line);
+}
+.toolkit-switch > button > span {
+  flex: 1;
+}
+.toolkit-switch > button > svg:last-child {
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 200ms,
+    transform 200ms var(--ease);
+}
+.toolkit-switch > button[aria-pressed="true"] {
+  color: var(--ink);
+}
+.toolkit-switch > button[aria-pressed="true"] > svg {
+  color: var(--positive);
+}
+.toolkit-switch > button[aria-pressed="true"] > svg:last-child {
+  opacity: 1;
+  transform: none;
+}
+.toolkit-display {
+  min-width: 0;
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 24px 35px 30px;
+}
+.toolkit-art {
+  position: relative;
+  padding: 0 5px 20px;
+  direction: ltr;
+}
+.toolkit-art svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+.toolkit-art-track {
+  stroke: var(--line);
+  stroke-width: 1;
+  opacity: 0.6;
+}
+.toolkit-art text {
+  font-size: 13px;
+  fill: var(--muted);
+  text-anchor: middle;
+  font-family: inherit;
+}
+.toolkit-column > rect {
+  fill: var(--surface-hover);
+}
+.toolkit-column > path {
+  stroke: var(--positive);
+  stroke-width: 2;
+}
+.toolkit-column {
+  transform-origin: center bottom;
+  animation: toolkit-column 5s var(--ease) infinite alternate;
+}
+.toolkit-column.column-1 {
+  animation-delay: -1s;
+}
+.toolkit-column.column-2 {
+  animation-delay: -2s;
+}
+.toolkit-trace {
+  stroke: var(--positive);
+  stroke-width: 2.5;
+  stroke-dasharray: 800;
+  animation: toolkit-trace 7s var(--ease) infinite;
+}
+.toolkit-trace.trace-back {
+  stroke: var(--subtle);
+  opacity: 0.6;
+  animation-delay: -1s;
+}
+.toolkit-point {
+  fill: var(--positive);
+}
+.toolkit-file > path,
+.toolkit-art-3 svg > rect,
+.toolkit-art-3 svg > path:not(.toolkit-trace) {
+  fill: var(--surface-raised);
+  stroke: var(--positive);
+  stroke-width: 1.5;
+}
+.toolkit-file {
+  animation: toolkit-float 5s var(--ease) infinite alternate;
+}
+.toolkit-file.file-1 {
+  animation-delay: -1.5s;
+}
+.toolkit-file.file-2 {
+  animation-delay: -3s;
+}
+.toolkit-example {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.8;
+  margin-top: 14px;
+  color: var(--muted);
+}
+.toolkit-description {
+  min-height: 230px;
+}
+.toolkit-description > svg {
+  color: var(--positive);
+  margin-bottom: 10px;
+}
+.toolkit-description h3 {
+  font-size: 24px;
+  line-height: 1.7;
+  font-weight: 700;
+}
+.toolkit-description p {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 2;
+  max-width: 58ch;
+}
+.lab-app[data-view="home"] #main-content {
+  padding-bottom: clamp(64px, 7vw, 112px);
+}
+.home-exp-section *,
+.home-exp-section *::before,
+.home-exp-section *::after {
+  animation-play-state: paused;
+}
+.home-exp-section.is-viewing *,
+.home-exp-section.is-viewing *::before,
+.home-exp-section.is-viewing *::after {
+  animation-play-state: running;
+}
+@keyframes signal-flow {
+  to {
+    stroke-dashoffset: -120;
+  }
+}
+@keyframes instrument-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes toolkit-column {
+  from {
+    transform: scaleY(0.88);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes toolkit-trace {
+  0% {
+    stroke-dashoffset: 800;
+  }
+  40%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes toolkit-float {
+  from {
+    opacity: 0.7;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 1100px) {
+  .home-exp-section {
+    width: calc(100% - 64px);
+  }
+  .home-purpose {
+    gap: 3%;
+  }
+  .purpose-perspective {
+    height: 350px;
+  }
+  .purpose-deck {
+    transform: scale(0.86);
+  }
+  .toolkit-display {
+    padding-inline: 25px;
+  }
+}
+@media (max-width: 780px) {
+  .home-exp-section {
+    width: calc(100% - 40px);
+    margin-top: 85px;
+  }
+  .experience-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 27px;
+  }
+  .experience-heading h2,
+  .purpose-copy > h2 {
+    font-size: clamp(28px, 5vw, 36px);
+  }
+  .experience-heading > p {
+    max-width: 500px;
+  }
+  .signal-stage {
+    padding: 25px 15px;
+  }
+  .signal-diagram {
+    min-height: 180px;
+  }
+  .signal-diagram text {
+    font-size: 19px;
+  }
+  .signal-explanation {
+    gap: 25px;
+  }
+  .signal-controls > button {
+    padding-inline: 0;
+    gap: 9px;
+    font-size: 14px;
+  }
+  .signal-detail h3 {
+    font-size: 19px;
+  }
+  .signal-detail p {
+    font-size: 15px;
+  }
+  .home-purpose {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .purpose-copy {
+    max-width: 550px;
+  }
+  .purpose-description {
+    min-height: 0;
+  }
+  .purpose-perspective {
+    height: 360px;
+  }
+  .purpose-instrument-caption > p {
+    min-height: 0;
+  }
+  .toolkit-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .toolkit-switch {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .toolkit-switch > button {
+    flex: 1 1 40%;
+    min-height: 56px;
+    padding: 13px 10px;
+    font-size: 15px;
+    gap: 10px;
+    border: 0;
+    border-radius: 8px;
+  }
+  .toolkit-switch > button:first-child {
+    border: 0;
+  }
+  .toolkit-switch > button[aria-pressed="true"] {
+    background: var(--surface);
+  }
+  .toolkit-display {
+    padding: 23px;
+  }
+  .toolkit-description {
+    min-height: 245px;
+  }
+}
+@media (max-width: 540px) {
+  .signal-explanation {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .signal-controls {
+    flex-direction: row;
+    gap: 5px;
+  }
+  .signal-controls > button,
+  .signal-controls > button:first-child {
+    border: 0;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 3px;
+    font-size: 12px;
+    border-radius: 8px;
+    line-height: 1.8;
+  }
+  .signal-controls > button[aria-pressed="true"] {
+    background: var(--surface);
+  }
+  .signal-step {
+    display: none;
+  }
+  .signal-detail {
+    padding: 0;
+  }
+  .signal-detail p {
+    min-height: 120px;
+  }
+  .signal-caption {
+    font-size: 12px;
+  }
+  .signal-stage {
+    padding: 8px 8px 22px;
+  }
+  .signal-diagram {
+    min-height: 145px;
+  }
+  .signal-diagram text {
+    font-size: 22px;
+  }
+  .purpose-switch {
+    gap: 5px;
+  }
+  .purpose-switch > button {
+    flex: 1 1 40%;
+    justify-content: center;
+    padding-inline: 10px;
+    font-size: 13px;
+  }
+  .purpose-perspective {
+    height: 320px;
+  }
+  .purpose-deck {
+    width: 245px;
+    height: 210px;
+  }
+  .instrument-plane,
+  .instrument-face {
+    width: 245px;
+    height: 210px;
+  }
+  .instrument-emblem > svg {
+    width: 42px;
+    height: 42px;
+  }
+  .instrument-name {
+    font-size: 18px;
+  }
+  .toolkit-description h3 {
+    font-size: 21px;
+  }
+  .toolkit-description {
+    min-height: 285px;
+  }
+  .toolkit-switch > button > svg:last-child {
+    display: none;
+  }
+  .toolkit-art {
+    padding-inline: 0;
+  }
+  .toolkit-example {
+    font-size: 12px;
+  }
+}
+@media (max-width: 350px) {
+  .home-exp-section {
+    width: calc(100% - 28px);
+  }
+  .purpose-perspective {
+    height: 290px;
+  }
+  .purpose-deck {
+    width: 215px;
+    height: 190px;
+  }
+  .instrument-plane,
+  .instrument-face {
+    width: 215px;
+    height: 190px;
+  }
+  .purpose-switch > button {
+    flex: 1 1 40%;
+    justify-content: center;
+  }
+  .toolkit-display {
+    padding: 18px;
+  }
+}
+.reduced-motion .home-exp-section *,
+.reduced-motion .home-exp-section *::before,
+.reduced-motion .home-exp-section *::after {
+  animation: none !important;
+  transition: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-exp-section *,
+  .home-exp-section *::before,
+  .home-exp-section *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+@media print {
+  .home-exp-section {
+    width: 100%;
+    margin-top: 30px;
+    break-inside: avoid;
+  }
+  .purpose-perspective {
+    display: none;
+  }
+  .signal-controls,
+  .purpose-switch,
+  .toolkit-switch {
+    display: none;
+  }
+  .signal-explanation,
+  .home-purpose,
+  .toolkit-layout {
+    display: block;
+  }
+}
