@@ -1,173 +1,63 @@
-راهنمای بازطراحی، امکانات آزمایشگاه، تست‌ها و راه‌اندازی پایش: [LAB_GUIDE.fa.md](LAB_GUIDE.fa.md).
-
 <div align="center">
 
-<img src="assets/readme/hero.gif" width="1200" alt="PIMX PASS DNS: a resolver globe linked to a ranked server array" />
+<a href="https://pimxpassdns.pages.dev/"><img src="assets/readme/hero.gif" width="1200" alt="PIMX PASS DNS: animated project artwork" /></a>
 
-**[English](README.md) · [فارسی](README.fa.md)**
+[English](README.md) · [فارسی](README.fa.md) · [Live website ↗](https://pimxpassdns.pages.dev/)
+
+[![Live GitHub statistics](https://raw.githubusercontent.com/MOHAMMADREZAABEDINPOOR/MOHAMMADREZAABEDINPOOR/main/assets/readme/live-PIMX_PASS_DNS.svg)](https://github.com/MOHAMMADREZAABEDINPOOR/PIMX_PASS_DNS)
 
 </div>
 
-<div dir="rtl">
+# PIMX PASS DNS
 
-# 🌐 PIMX PASS DNS
+سرویس‌های DNS را روی اینترنت خودت با درخواست واقعی DNS-over-HTTPS مقایسه کن؛ با شبکهٔ سه‌بعدی زنده، مقایسه‌های ذخیره‌شده و راهنمای تنظیم دستگاه. تاریخچهٔ هر شبکه را نگه دار، DNS دلخواه اضافه کن و از نتایج خروجی بگیر.
 
-رابط دوزبانه مقایسه DNS با منابع گردآوری‌شده، آزمون زمان پاسخ در مرورگر، کارت نتیجه و بک‌اند اختیاری آمار.
+<a href="https://pimxpassdns.pages.dev/"><img src="assets/readme/redesign.gif" width="1200" alt="پیش‌نمایش رابط بازطراحی‌شده: PIMX PASS DNS" /></a>
 
-[GitHub](https://github.com/MOHAMMADREZAABEDINPOOR/PIMX_PASS_DNS) · [PIMX / Profile](https://github.com/MOHAMMADREZAABEDINPOOR) · [بنر ثابت](assets/readme/hero.png)
+[پیش‌نمایش رابط بازطراحی‌شده · PNG](assets/readme/redesign.png) · [Static artwork](assets/readme/hero.png)
 
-| نمای کلی | جزئیات |
-|:---|:---|
-| 🌐 تجربه | برنامه وب / تجربه مرورگری |
-| 🧰 فناوری | `React` · `Vite` · `TypeScript` · `Framer Motion` |
-| 🌐 زبان راهنما | [English](README.md) · [فارسی](README.fa.md) |
+## امکانات
 
-[✨ امکانات](#امکانات) · [🚀 شروع کار](#شروع-کار) · [⚙️ تنظیمات](#تنظیمات) · [🌍 استقرار](#استقرار)
+- اندازه‌گیری واقعی DoH، مقایسهٔ DNSها و شبکهٔ سه‌بعدی زنده
+- تاریخچهٔ محلی، علاقه‌مندی‌ها، ورود DNS دلخواه و خروجی JSON/CSV/TXT/PNG/QR
+- صفحه‌های خانه، آزمایش و راهنما؛ فارسی و انگلیسی، دو پوسته و PWA آفلاین
 
----
+## از مقایسه تا تنظیم دستگاه
 
-<a id="امکانات"></a>
+۱. معرفی را در `/` بخوان و از آنجا وارد آزمایشگاه `/test/` شو.
+۲. منبع DNS را انتخاب کن یا فهرست خودت را وارد کن؛ آزمایش را اجرا کن و نتایج اندازه‌گیری‌شده را مقایسه کن.
+۳. مجموعه را ذخیره کن یا خروجی بگیر و برای تنظیم دستگاه به `/guide/` برو. مسیرهای انگلیسی `/en/`، `/en/test/` و `/en/guide/` هستند.
 
-## ✨ امکانات
+رابط آبی کبالت و گرافیتی، پوستهٔ روشن و تاریک، فهرست‌های جست‌وجوپذیر قابل استفاده با کیبورد و پشتیبانی از کاهش حرکت دارد. تاریخچه، تنظیمات و مجموعه‌ها در همین مرورگر نگه داشته می‌شوند.
 
-| بخش | قابلیت موجود |
-|:---|:---|
-| ⚡ روند کار | فهرست DNS و اسکریپت تولید منابع |
-| 📡 شبکه | فرآیند اسکن، نتیجه زمان‌سنجی و کارت نمایش |
-| 🌐 تجربه کاربری | رابط فارسی و انگلیسی و پوسته قابل انتخاب |
-| 👤 حساب‌ها | آمار مدیریتی از مسیر API در Pages |
+## معنی اندازه‌گیری‌ها
 
-<a id="پشته-فنی"></a>
+آزمایش DoH درخواست واقعی DNS-over-HTTPS می‌فرستد. دسترسی HTTPS جداگانه مشخص می‌شود؛ مرورگر نمی‌تواند DNS خام UDP یا همهٔ پروتکل‌های رمزگذاری‌شده را آزمایش کند. نتیجه به اینترنت شما، پشتیبانی مقصد و CORS وابسته است. برنامه تنظیم DNS سیستم را تغییر نمی‌دهد و کاهش پینگ بازی را تضمین نمی‌کند.
 
-## 🧰 پشته فنی
+پایش زمان‌بندی‌شده به Worker جداگانهٔ Cloudflare و اتصال مشترک `MONITOR_KV` نیاز دارد. مسیر شبکهٔ این پایش با اتصال مرورگر شما متفاوت است و ساخت فرانت‌اند به‌تنهایی آن را فعال نمی‌کند.
 
-| ابزار | نسخه یا منبع |
-|---|---|
-| React | `^19.2.3` |
-| Vite | `^6.2.0` |
-| TypeScript | `~5.8.2` |
-| Framer Motion | `^12.23.26` |
+## اجرای محلی
 
-<a id="شروع-کار"></a>
+Node.js نسخهٔ 22.12 یا جدیدتر لازم است.
 
-## 🚀 شروع کار
-
-Node.js 22.12 یا بالاتر و مدیر پکیج مشخص‌شده در package.json. نسخه وابستگی‌ها را مطابق فایل قفل نصب کنید.
-
-<div dir="ltr">
-
-```bash
-git clone https://github.com/MOHAMMADREZAABEDINPOOR/PIMX_PASS_DNS.git
-cd PIMX_PASS_DNS
-
+```sh
 npm ci
 npm run dev
 ```
 
-</div>
-
-<a id="تنظیمات"></a>
-
-## ⚙️ تنظیمات
-
-کلیدهای زیر از فایل نمونه یا کد استخراج شده‌اند؛ همه الزاماً اجباری نیستند. مقدار و پیش‌فرض را در همان فایل بررسی و اسرار را فقط در محیط محلی یا هاست تنظیم کنید.
-
-| نام | کاربرد |
-|---|---|
-| `API_KEY` | اعتبارنامه یا اتصال؛ خصوصی نگه دارید |
-| `GEMINI_API_KEY` | اعتبارنامه یا اتصال؛ خصوصی نگه دارید |
-
-<a id="استفاده"></a>
-
-## 🎯 استفاده
-
-اسکن را شروع کنید، منتظر آزمون مرورگر بمانید و کارت‌ها را مقایسه کنید. برای تازه‌کردن فهرست از اسکریپت‌های تولید منبع استفاده کنید.
-
-<a id="ساختار-پروژه"></a>
-
-## 🗂️ ساختار پروژه
-
-| مسیر | نقش |
-|---|---|
-| [`assets/`](assets/) | فایل برند، رسانه و README |
-| [`components/`](components/) | اجزای قابل استفاده مجدد رابط |
-| [`functions/`](functions/) | توابع API میزبانی |
-| [`public/`](public/) | فایل عمومی وب |
-| [`scripts/`](scripts/) | ابزار توسعه و نگهداری |
-| [`services/`](services/) | سرویس و ابزار اتصال |
-| [`dnsveil-sources.json`](dnsveil-sources.json) | فایل ورودی یا تنظیم پروژه |
-| [`dnsveil-userdata.json`](dnsveil-userdata.json) | فایل ورودی یا تنظیم پروژه |
-| [`index.html`](index.html) | فایل ورودی یا تنظیم پروژه |
-| [`metadata.json`](metadata.json) | فایل ورودی یا تنظیم پروژه |
-| [`package.json`](package.json) | فایل ورودی یا تنظیم پروژه |
-| [`tsconfig.json`](tsconfig.json) | فایل ورودی یا تنظیم پروژه |
-
-<a id="فرمان‌ها-و-بررسی"></a>
-
-## 🧪 فرمان‌ها و بررسی
-
 | فرمان | کاربرد |
-|:---|:---|
-| `npm run dev` | 🧑‍💻 سرور توسعه |
-| `npm run build` | 📦 ساخت نسخه انتشار |
-| `npm run preview` | 👀 پیش‌نمایش خروجی |
-| `npm run lint` | 🧹 بررسی سبک کد |
+| --- | --- |
+| `npm run lint` | بررسی TypeScript |
+| `npm run build` | ساخت نسخهٔ نهایی و شش صفحهٔ محلی‌سازی‌شده |
+| `npm run preview` | پیش‌نمایش نسخهٔ نهایی |
+| `npm test` | آزمون‌های مرورگر و اندازه‌گیری با Playwright |
+| `npm run deploy` | ساخت و انتشار فرانت‌اند Pages |
+| `npm run deploy:monitor` | انتشار Worker پایش با تنظیمات مستقل |
 
-<div dir="ltr">
+## استقرار و کد
 
-```bash
-npm run dev
-npm run build
-npm run preview
-npm run lint
-```
+پوشهٔ `dist` را همراه `functions/` روی Cloudflare Pages منتشر کنید. نصب و پیمایش آفلاین به ساخت نهایی و HTTPS نیاز دارد. API اختیاری آمار تنظیمات استقرار خودش را دارد.
 
-</div>
+[راهنمای استقرار](DEPLOYMENT.md) · [راهنمای آزمایشگاه](LAB_GUIDE.fa.md) · [سرویس‌های اندازه‌گیری](services/) · [کد پایش](cloudflare/)
 
-این‌ها فرمان‌های موجود در package.json هستند؛ فهرست بالا گزارش اجرای آزمون نیست. فرمان تست ممکن است مرورگر، سرویس یا دیتابیس آماده بخواهد.
-
-<a id="استقرار"></a>
-
-## 🌍 استقرار
-
-خروجی build را مطابق معماری منتشر کنید: پروژه دارای server به فرایند Node نیاز دارد؛ رابط Vite استاتیک می‌تواند از dist میزبانی شود. توابع Pages، KV یا D1 به تنظیم مستقل نیاز دارند.
-
-<a id="محدودیت‌ها"></a>
-
-## 📌 محدودیت‌ها
-
-زمان‌سنجی fetch مرورگر به CORS، مسیر HTTPS و شبکه فعلی وابسته است؛ آزمون مستقیم UDP نیست. نتایج به‌صورت خودکار تنظیمات DNS سیستم‌عامل را تغییر نمی‌دهند.
-
-<a id="رفع-مشکل"></a>
-
-## 🛠️ رفع مشکل
-
-- پکیج غایب: وابستگی را با مدیر پکیج پروژه نصب کنید.
-- خطای API یا شبکه: آدرس، سرویس و اتصال میزبانی را بررسی کنید.
-- فایل قدیمی: در صورت وجود اسکریپت ساخت، build و کش مرورگر را تازه کنید.
-
-<a id="مشارکت"></a>
-
-## 🤝 مشارکت
-
-برای تغییر، شاخه مستقل بسازید، رفتار فعلی را بررسی کنید و توضیح روشن همراه تغییر بفرستید. اطلاعات خصوصی، خروجی build و دیتابیس محلی را commit نکنید.
-
-<a id="مجوز"></a>
-
-## 📄 مجوز
-
-فایل مجوز در این نسخه موجود نیست. نمایش عمومی کد به‌تنهایی مجوز استفاده مجدد نیست؛ برای شرایط استفاده با مالک مخزن هماهنگ کنید.
-
----
-
-ساخته‌شده در مجموعه **PIMX** · مستندات فارسی و انگلیسی.
-
----
-
-<div align="center">
-
-🌐 **PIMX PASS DNS** · [English](README.md) · [فارسی](README.fa.md)
-
-</div>
-
-</div>
+[GitHub](https://github.com/MOHAMMADREZAABEDINPOOR/PIMX_PASS_DNS) · [PIMX](https://github.com/MOHAMMADREZAABEDINPOOR) · [Portfolio](https://pimx.pages.dev/)

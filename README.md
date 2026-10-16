@@ -1,165 +1,63 @@
-The redesigned DNS laboratory includes live 3D network rendering, genuine DoH measurements, comparisons, network history, saved collections, custom imports, setup guides, JSON/CSV/TXT/PNG/QR exports, an offline PWA and bilingual static SEO pages. See [the implementation and deployment guide (Persian)](LAB_GUIDE.fa.md). Scheduled service health requires the supplied Cloudflare Worker and a shared `MONITOR_KV` binding; it is not provisioned by the frontend build.
-
-The explanatory home lives at `/` (Persian) and `/en/` (English). Start DNS test opens the separate laboratory at `/test/` or `/en/test/`. The cobalt interface includes light/dark themes, a bilingual loading screen, an accessible source listbox and reduced-motion support. `npm test` runs the browser and measurement checks.
-
-Device setup has dedicated `/guide/` and `/en/guide/` pages. Shared styled selectors support search for long catalogs, keyboard operation and modal-safe positioning. The production build generates six localized HTML pages and caches all six for offline navigation.
-
 <div align="center">
 
-<img src="assets/readme/hero.gif" width="1200" alt="PIMX PASS DNS: a resolver globe linked to a ranked server array" />
+<a href="https://pimxpassdns.pages.dev/"><img src="assets/readme/hero.gif" width="1200" alt="PIMX PASS DNS: animated project artwork" /></a>
 
-**[English](README.md) · [فارسی](README.fa.md)**
+[English](README.md) · [فارسی](README.fa.md) · [Live website ↗](https://pimxpassdns.pages.dev/)
+
+[![Live GitHub statistics](https://raw.githubusercontent.com/MOHAMMADREZAABEDINPOOR/MOHAMMADREZAABEDINPOOR/main/assets/readme/live-PIMX_PASS_DNS.svg)](https://github.com/MOHAMMADREZAABEDINPOOR/PIMX_PASS_DNS)
 
 </div>
 
-# 🌐 PIMX PASS DNS
+# PIMX PASS DNS
 
-A bilingual DNS comparison interface with curated resolver sources, browser-based timing tests, result cards and an optional analytics backend.
+Compare DNS resolvers on your own connection with real DNS-over-HTTPS queries, a live 3D network, saved comparisons and device setup guides. Keep network-specific history, import custom resolvers and export results.
 
-[GitHub](https://github.com/MOHAMMADREZAABEDINPOOR/PIMX_PASS_DNS) · [PIMX / Profile](https://github.com/MOHAMMADREZAABEDINPOOR) · [Static artwork](assets/readme/hero.png)
+<a href="https://pimxpassdns.pages.dev/"><img src="assets/readme/redesign.gif" width="1200" alt="Preview of the redesigned interface: PIMX PASS DNS" /></a>
 
-| At a glance | Details |
-|:---|:---|
-| 🌐 Experience | Web application / browser experience |
-| 🧰 Built with | `React` · `Vite` · `TypeScript` · `Framer Motion` |
-| 🌐 Documentation | [English](README.md) · [فارسی](README.fa.md) |
+[Preview of the redesigned interface · PNG](assets/readme/redesign.png) · [Static artwork](assets/readme/hero.png)
 
-[✨ Features](#features) · [🚀 Getting started](#getting-started) · [⚙️ Configuration](#configuration) · [🌍 Deployment](#deployment)
+## What you can do
 
----
+- Real DoH measurements, resolver comparisons and a live 3D network
+- Local history, favorites, custom imports and JSON/CSV/TXT/PNG/QR exports
+- Separate Home, Test and Guide pages; Persian/English, themes and offline PWA
 
-<a id="features"></a>
+## From comparison to setup
 
-## ✨ Features
+1. Read the introduction at `/en/`, then open `/en/test/`.
+2. Choose a resolver source or import your own, run a test and compare the measured results.
+3. Save a collection or export results, then open `/en/guide/` for device-specific setup. Persian routes are `/`, `/test/` and `/guide/`.
 
-| Area | Included capability |
-|:---|:---|
-| ⚡ Workflow | Resolver catalog and source generation scripts |
-| 📡 Network | Scan workflow, timing results and result cards |
-| 🌐 Experience | English/Persian UI and selectable themes |
-| 👤 Accounts | Admin analytics through a Pages API endpoint |
+The cobalt and graphite interface includes light/dark themes, searchable keyboard-operated selectors and reduced-motion support. History, preferences and saved collections are local to this browser.
 
-<a id="stack"></a>
+## What the measurements mean
 
-## 🧰 Stack
+DoH tests issue actual DNS-over-HTTPS queries. HTTPS reachability is labeled separately; a browser cannot benchmark raw UDP DNS or every encrypted DNS protocol. Results depend on your connection, endpoint support and CORS. The app does not change system DNS or guarantee lower game latency.
 
-| Tool | Version / source |
-|---|---|
-| React | `^19.2.3` |
-| Vite | `^6.2.0` |
-| TypeScript | `~5.8.2` |
-| Framer Motion | `^12.23.26` |
+Scheduled service health uses a separate Cloudflare monitoring Worker and shared `MONITOR_KV` binding. Edge monitoring measures a different network path from your browser; building the frontend alone does not enable scheduled checks.
 
-<a id="getting-started"></a>
+## Run locally
 
-## 🚀 Getting started
+Use Node.js 22.12 or newer.
 
-Node.js 22.12+ and the package manager declared in package.json. Install dependencies from the checked-in lockfile where available.
-
-```bash
-git clone https://github.com/MOHAMMADREZAABEDINPOOR/PIMX_PASS_DNS.git
-cd PIMX_PASS_DNS
-
+```sh
 npm ci
 npm run dev
 ```
 
-<a id="configuration"></a>
-
-## ⚙️ Configuration
-
-These names are found in the example configuration or source; not all are required. Check their defaults/usage in those files and supply secrets only in your local or hosting environment.
-
-| Name | Role |
-|---|---|
-| `API_KEY` | Credential/connection setting; keep private |
-| `GEMINI_API_KEY` | Credential/connection setting; keep private |
-
-<a id="usage"></a>
-
-## 🎯 Usage
-
-Start a scan, wait for the browser tests and compare the result cards. Use the included source-building scripts when updating the resolver catalog.
-
-<a id="project-structure"></a>
-
-## 🗂️ Project structure
-
-| Path | Role |
-|---|---|
-| [`assets/`](assets/) | Brand/media/README assets |
-| [`components/`](components/) | Reusable interface components |
-| [`functions/`](functions/) | Hosting API functions |
-| [`public/`](public/) | Public web assets |
-| [`scripts/`](scripts/) | Development and maintenance utilities |
-| [`services/`](services/) | Services and integration helpers |
-| [`dnsveil-sources.json`](dnsveil-sources.json) | Project entry/configuration file |
-| [`dnsveil-userdata.json`](dnsveil-userdata.json) | Project entry/configuration file |
-| [`index.html`](index.html) | Project entry/configuration file |
-| [`metadata.json`](metadata.json) | Project entry/configuration file |
-| [`package.json`](package.json) | Project entry/configuration file |
-| [`tsconfig.json`](tsconfig.json) | Project entry/configuration file |
-
-<a id="commands-and-checks"></a>
-
-## 🧪 Commands and checks
-
 | Command | Purpose |
-|:---|:---|
-| `npm run dev` | 🧑‍💻 Development server |
-| `npm run build` | 📦 Production build |
-| `npm run preview` | 👀 Preview a build |
-| `npm run lint` | 🧹 Lint source |
+| --- | --- |
+| `npm run lint` | TypeScript checks |
+| `npm run build` | Production build and six localized static entry pages |
+| `npm run preview` | Preview production output |
+| `npm test` | Playwright browser and measurement checks |
+| `npm run deploy` | Build and deploy the Pages frontend |
+| `npm run deploy:monitor` | Deploy the separately configured monitoring Worker |
 
-```bash
-npm run dev
-npm run build
-npm run preview
-npm run lint
-```
+## Deployment and source
 
-These commands are declared in package.json; the list is not a test execution report. Test commands may need a browser, service or prepared database.
+Deploy `dist` to Cloudflare Pages with the included `functions/`. Install and offline navigation require a production build over HTTPS. The optional analytics API uses its own deployment configuration.
 
-<a id="deployment"></a>
+See [deployment](DEPLOYMENT.md), [the laboratory guide](LAB_GUIDE.fa.md), [measurement services](services/) and [monitoring source](cloudflare/).
 
-## 🌍 Deployment
-
-Deploy the build according to its architecture: server-backed projects need a Node process; static Vite frontends can host dist. Pages functions, KV or D1 require separate configuration.
-
-<a id="limitations"></a>
-
-## 📌 Limitations
-
-Browser fetch timing is affected by CORS, HTTPS endpoints and the current network; it is not a raw UDP DNS benchmark. Results do not automatically change your operating-system DNS settings.
-
-<a id="troubleshooting"></a>
-
-## 🛠️ Troubleshooting
-
-- Missing packages: install dependencies using the project’s package manager.
-- API/network failure: check the configured origin, provider and hosting bindings.
-- Old assets: rebuild when a build script exists, then clear the browser cache.
-
-<a id="contributing"></a>
-
-## 🤝 Contributing
-
-Create a focused branch, verify the affected behavior and explain the change clearly. Keep private data, build outputs and local databases out of commits.
-
-<a id="license"></a>
-
-## 📄 License
-
-No repository-level license file is included in this snapshot. Public visibility alone does not grant reuse rights; contact the repository owner for terms.
-
----
-
-Part of **PIMX** · Documentation in English and Persian.
-
----
-
-<div align="center">
-
-🌐 **PIMX PASS DNS** · [English](README.md) · [فارسی](README.fa.md)
-
-</div>
+[GitHub](https://github.com/MOHAMMADREZAABEDINPOOR/PIMX_PASS_DNS) · [PIMX](https://github.com/MOHAMMADREZAABEDINPOOR) · [Portfolio](https://pimx.pages.dev/)
