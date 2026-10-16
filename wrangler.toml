@@ -16,6 +16,12 @@ database_id = "1c19dcb5-910e-41c1-9838-9c8babfa9242"
 binding = "DB"
 database_name = "pimxpassdns"
 
+[vars]
+NODE_VERSION = "22"
+
+[env.production.vars]
+NODE_VERSION = "22"
+
 [[env.production.d1_databases]]
 database_id = "1c19dcb5-910e-41c1-9838-9c8babfa9242"
 binding = "DB"
