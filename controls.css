@@ -13,11 +13,32 @@
 }
 .source-popover .source-menu {
   min-height: 0;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
   flex: 1;
   border: 0;
   border-radius: 0;
   box-shadow: none;
   animation: none;
+}
+.source-popover .source-option {
+  min-width: 0;
+}
+.source-popover .source-option-copy strong,
+.source-popover .source-option-copy small {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+.source-option-end {
+  flex-shrink: 0;
 }
 .source-search {
   display: flex;

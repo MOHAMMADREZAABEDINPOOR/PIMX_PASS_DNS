@@ -303,9 +303,11 @@ export function SourceSelect({
                       <OptionIcon size={20} />
                     </span>
                     <span className="source-option-copy">
-                      <strong>{option.label}</strong>
+                      <strong title={option.label}>{option.label}</strong>
                       {option.description && (
-                        <small>{option.description}</small>
+                        <small title={option.description}>
+                          {option.description}
+                        </small>
                       )}
                     </span>
                     <span className="source-option-end">
